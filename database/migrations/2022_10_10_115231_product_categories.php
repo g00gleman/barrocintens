@@ -13,7 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('products_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->tinyInteger('is_employee_only'); 
+         }); 
     }
 
     /**
@@ -23,6 +27,7 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('products_categories');
+
     }
 };

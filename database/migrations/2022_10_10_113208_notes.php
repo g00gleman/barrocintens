@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->LongText('note')->index();
+            $table->LongText('note');
             $table->date('date')->nullable();
             $table->foreignId('company_id')->constrained();
-            $table->foreignId('author_id')->constrained();
+            $table->foreignId('users_id')->constrained();
         });
     }
 

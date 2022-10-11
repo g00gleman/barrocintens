@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('desciption'); 
             $table->string('image_path');
             $table->decimal('price');
-            $table->foreignId('product_catehory_id')->constrained();
+            $table->integer('category_id');
          }); 
     }
 

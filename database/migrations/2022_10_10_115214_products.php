@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('desciption'); 
             $table->string('image_path');
             $table->decimal('price');
+            $table->decimal('instal_price');
             $table->integer('category_id');
          }); 
     }

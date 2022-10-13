@@ -24,7 +24,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    
+
+    // hier de routes voor in admin pagina's
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
     Route::get('/product/overzicht', [ProductController::class, 'getproduct'])->name('product.overzicht');
 
@@ -39,7 +40,9 @@ Route::middleware([
     Route::delete('/product/delete/{productid}', [ProductController::class, 'destroy'])->name('product.delete');
 
 
+
 });
 
-Route::get('/factuur', [factuurController::class, 'getList'])->name('factuur.list');
 
+Route::get('/factuur', [factuurController::class, 'getList'])->name('factuur.list');
+Route::get('/contact', function () { return view('contact'); })->name('contact');

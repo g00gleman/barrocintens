@@ -6,7 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class categorySeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+        $product_catogory = [
+            ['name' => 'koffiesetapparaat','is_employee_only' => 0],
+            ['name' => 'koffiebonen','is_employee_only' => 0],
+        ];
+        DB::table('product_categories')->insert($product_catogory);
     }
 }

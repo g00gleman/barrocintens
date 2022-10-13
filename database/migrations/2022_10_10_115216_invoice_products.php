@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
        Schema::create('invoice_products', function (Blueprint $table) {
-           $table->foreignId('invoice_id')->constrained();
-           $table->foreignId('product_id')->constrained(); 
+            $table->foreignId('invoice_id')->constrained();
+            $table->foreignId('product_id')->constrained(); 
             $table->integer('amount');
             $table->decimal('price_per_product');
         }); 

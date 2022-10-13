@@ -25,7 +25,11 @@ Route::middleware([
 ])->group(function () {
     
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
     Route::get('/product/overzicht', [ProductController::class, 'getproduct'])->name('product.overzicht');
+    Route::post('/product/overzicht', [ProductController::class, 'postcategory'])->name('product.overzicht');
+
+
 
     Route::get('/product/create', [ProductController::class, 'getcreate'])->name('product.create');
     Route::post('/product/create', [ProductController::class, 'store'])->name('product.create');
@@ -37,5 +41,6 @@ Route::middleware([
 
     Route::delete('/product/delete/{productid}', [ProductController::class, 'destroy'])->name('product.delete');
 
+    Route::delete('/product_category/delete/{categoryid}', [ProductController::class, 'destroycategory'])->name('product_category.delete');
 
 });

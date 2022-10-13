@@ -19,6 +19,6 @@ class categorySeeder extends Seeder
             ['name' => 'koffiesetapparaat','is_employee_only' => 0],
             ['name' => 'koffiebonen','is_employee_only' => 0],
         ];
-        DB::table('product_categories')->insert($product_catogory);
+        DB::table('products_categories')->insert($product_catogory);
     }
 }

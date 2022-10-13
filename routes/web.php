@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\factuurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,6 @@ Route::middleware([
 
 
 });
+
+Route::get('/factuur', [factuurController::class, 'getList'])->name('factuur.list');
+

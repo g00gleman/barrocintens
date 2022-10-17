@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,5 +43,8 @@ Route::middleware([
     Route::delete('/product/delete/{productid}', [ProductController::class, 'destroy'])->name('product.delete');
 
     Route::delete('/product_category/delete/{categoryid}', [ProductController::class, 'destroycategory'])->name('product_category.delete');
+
+    Route::get('/user/overzicht', [UserController::class, 'getuser'])->name('user.overzicht');
+
 
 });

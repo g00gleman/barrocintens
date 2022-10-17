@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->foreignId('company_id')->constrained();
             $table->foreignId('users_id')->constrained();
+            $table->timestamps();
         });
     }
 

@@ -89,59 +89,59 @@ function myFunction() {
     }       
   }
 }
+function company() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("mycompany");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("Bedrijf");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
 </script>
 
 
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-roboto text-xl text-gray-800 leading-tight">
-        Bedrijf overzicht
+        Overzicht meldingen
         </h2>
     </x-slot>
-    <div class="pt-15 mt-8 w-4/5 m-auto">
-            <a href="/company/create" class="bg-yellow-400 uppercase text-gray-100 text-xs font-roboto py-3 px-5 rounded-3xl ">
-                Create Bedrijf
-            </a>
-    </div>
 <div class="ml-40 mt-8 mr-40">
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name.." title="Type in a name">
-
+<input type="text" id="mycompany" onkeyup="company()" placeholder="Search for company.." title="Type in a name">
 </div>
+
 
 <table id="Bedrijf">
   <tr>
     <th>ID</th>
-    <th>Company name</th>
-    <th>Phone</th>
-    <th>Street</th>
-    <th>HouseNumber</th>
-    <th>City</th>
-    <th>CountryCode</th>
-    <th>BkrCheckedAt</th>
-    <th>Actions</th>
-
+    <th>Remark</th>
+    <th>Company id</th>
+    <th>Made</th>
   </tr>
 
-  @foreach($company as $companies)
-  <form 
-        action="/company/delete/{{ $companies->id }}"
-        method="POST">
-        @csrf
-        @method('delete')
+  @foreach($melding as $meldingen)
+  
   <tr>
-    <td>{{$companies->id}}</td>
-    <td>{{$companies->name}}</td>
-    <td>{{$companies->phone}}</td>
-    <td>{{$companies->street}}</td>
-    <td>{{$companies->HouseNumber}}</td>
-    <td>{{$companies->city}}</td>
-    <td>{{$companies->CountryCode}}</td>
-    <td>{{$companies->BkrCheckedAt}}</td>
-    <td><a href="/company/edit/{{ $companies->id }}" class="button">Wijzigen</a><button type="submit" class="button1">Delete</button>  </td>
+    <td>{{$meldingen->id}}</td>
+    <td>{{$meldingen->remark}}</td>
+    <td>{{$meldingen->company_id}}</td>
+    <td>{{$meldingen->date_added}}</td>
   </tr>
-  </form>
-
   @endforeach
 </table>
+
+
+
 
 </x-app-layout>

@@ -115,8 +115,7 @@ class ProductController extends Controller
         $post = products::where('id', $id);
         $post->delete();
 
-        return redirect('product/overzicht')
-            ->with('message', 'Jouw post is verwijderd!');
+        return redirect('product/overzicht');
     }
 
     public function postcategory(Request $request)

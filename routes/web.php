@@ -6,6 +6,7 @@ use App\Http\Controllers\noteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\factuurController;
+use App\Http\Controllers\MaintenanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,9 @@ Route::middleware([
 
     // hier de routes voor notitie
     Route::resource('note', noteController::class);
+
+    // hier de routes voor maintenance
+    Route::get('/maintenance/MeldingOverzicht', [MaintenanceController::class, 'getmaintenance'])->name('maintenance.MeldingOverzicht');
 
     // hier de routes voor home-page
     Route::get('/product', [ProductController::class, 'gethomeproduct'])->name('product');

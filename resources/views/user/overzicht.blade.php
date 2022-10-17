@@ -114,8 +114,8 @@ function myFunction() {
     <th>Username</th>
     <th>E-mail</th>
     <th>Role</th>
-    <th>Gemaakt</th>
-    <th>Bewerkt</th>
+    <th>Made</th>
+    <th>Updated</th>
     <th>Actions</th>
   </tr>
 

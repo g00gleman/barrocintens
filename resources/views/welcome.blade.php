@@ -26,7 +26,11 @@
         </div>
         <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">Koffie apparaten</h2>
         <p class="leading-relaxed text-base">Bekijk ons assortiment aan koffie apparaten</p>
-        <button class="flex mx-auto mt-6 text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded">Bekijk</button>
+        <form 
+          action="/product">
+          @csrf
+          <button  class="flex mx-auto mt-6 text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded">Bekijk</button>
+      </form>
       </div>
       <div class="sm:w-1/2 mb-10 px-4">
         <div class="rounded-lg h-64 overflow-hidden">

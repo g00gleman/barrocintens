@@ -140,7 +140,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2>Overicht category</h2>
+      <h2>Overzicht category</h2>
     </div>
     <div class="modal-body">
     <form 

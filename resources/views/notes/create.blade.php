@@ -20,7 +20,13 @@
                             <th>datum</th>
                         </tr>
                         <tr>
-                            <td class="bedrijf"><input type="text" name="company_id" placeholder="bedrijfsid"></td>
+                            <td>
+                            <select class="mb-8" name="company_id">
+                                @foreach($company as $companies)
+                                <option value="{{ $companies->id }}">{{ $companies->name }}</option>
+                                @endforeach
+                            </select>
+                            </td>
                             <td class="note"><textarea name="note" id="note" cols="75" rows="10"></textarea></td>
                             <td class="date"><input type="date" name="date"></td>
                         </tr>

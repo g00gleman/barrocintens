@@ -1,5 +1,5 @@
 <style>
-  .button {
+.button {
   background-color: #32CD32;
   border: none;
   border-radius: 8px;
@@ -35,7 +35,7 @@
 
 .button1:hover {opacity: 1}
 
-#customers {
+#Bedrijf {
   font-family: roboto;
   border-collapse: collapse;
   width: 79%;
@@ -44,7 +44,7 @@
   margin-top: 20px;
 }
 
-#customers td, #customers th {
+#Bedrijf td, #Bedrijf th {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -56,11 +56,12 @@
   margin-top: 40px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+#Bedrijf tr:nth-child(even){background-color: #f2f2f2;}
 
 #customers tr:hover {background-color: #ddd;}
 
-#customers th {
+
+#Bedrijf th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -74,7 +75,7 @@ function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
-  table = document.getElementById("customers");
+  table = document.getElementById("Bedrijf");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[1];
@@ -94,48 +95,52 @@ function myFunction() {
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-roboto text-xl text-gray-800 leading-tight">
-            Users overzicht
+        Bedrijf overzicht
         </h2>
     </x-slot>
     <div class="pt-15 mt-8 w-4/5 m-auto">
-            <a href="/user/create" class="bg-yellow-400 uppercase text-gray-100 text-xs font-roboto py-3 px-5 rounded-3xl ">
-                Create User
+            <a href="/company/create" class="bg-yellow-400 uppercase text-gray-100 text-xs font-roboto py-3 px-5 rounded-3xl ">
+                Create Bedrijf
             </a>
     </div>
 <div class="ml-40 mt-8 mr-40">
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Zoek naar naam.." title="Type in a name">
 
 </div>
 
-<table id="customers">
+<table id="Bedrijf">
   <tr>
     <th>ID</th>
-    <th>Name</th>
-    <th>Username</th>
-    <th>E-mail</th>
-    <th>Role</th>
-    <th>Gemaakt</th>
-    <th>Bewerkt</th>
+    <th>Bedrijf naam</th>
+    <th>Phone</th>
+    <th>Street</th>
+    <th>HouseNumber</th>
+    <th>City</th>
+    <th>CountryCode</th>
+    <th>BkrCheckedAt</th>
     <th>Actions</th>
+
   </tr>
 
-  @foreach($user as $users)
+  @foreach($company as $companies)
   <form 
-        action="/user/delete/{{ $users->id }}"
+        action="/company/delete/{{ $companies->id }}"
         method="POST">
         @csrf
         @method('delete')
   <tr>
-    <td>{{$users->id}}</td>
-    <td>{{$users->name}}</td>
-    <td>{{$users->username}}</td>
-    <td>{{$users->email}}</td>
-    <td>-</td>
-    <td>{{$users->created_at}}</td>
-    <td>{{$users->updated_at}}</td>
-    <td><a href="/user/edit/{{ $users->id }}" class="button">Wijzigen</a><button type="submit" class="button1">Delete</button>  </td>
+    <td>{{$companies->id}}</td>
+    <td>{{$companies->name}}</td>
+    <td>{{$companies->phone}}</td>
+    <td>{{$companies->street}}</td>
+    <td>{{$companies->HouseNumber}}</td>
+    <td>{{$companies->city}}</td>
+    <td>{{$companies->CountryCode}}</td>
+    <td>{{$companies->BkrCheckedAt}}</td>
+    <td><a href="/company/edit/{{ $companies->id }}" class="button">Wijzigen</a><button type="submit" class="button1">Delete</button>  </td>
   </tr>
   </form>
+
   @endforeach
 </table>
 

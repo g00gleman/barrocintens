@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\noteController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\factuurController;
 
@@ -29,9 +30,11 @@ Route::middleware([
 
     // hier de routes voor in admin pagina's
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
-    
-    
+
     Route::get('/product/overzicht', [ProductController::class, 'getproduct'])->name('product.overzicht');
+    Route::post('/product/overzicht', [ProductController::class, 'postcategory'])->name('product.overzicht');
+
+
 
     Route::get('/product/create', [ProductController::class, 'getcreate'])->name('product.create');
     Route::post('/product/create', [ProductController::class, 'store'])->name('product.create');
@@ -42,6 +45,10 @@ Route::middleware([
     Route::post('/product/edit', [ProductController::class, 'edit'])->name('product.edit');
 
     Route::delete('/product/delete/{productid}', [ProductController::class, 'destroy'])->name('product.delete');
+
+    Route::delete('/product_category/delete/{categoryid}', [ProductController::class, 'destroycategory'])->name('product_category.delete');
+
+    Route::get('/user/overzicht', [UserController::class, 'getuser'])->name('user.overzicht');
 
 
     Route::resource('note', noteController::class);

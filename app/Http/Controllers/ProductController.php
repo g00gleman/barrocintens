@@ -16,6 +16,13 @@ class ProductController extends Controller
         return view('product.overzicht', compact('products','categories'));
     }
 
+    public function gethomeproduct()
+    {
+        $categories = productCategories::all();
+        $products = products::all();
+        return view('product', compact('products','categories'));
+    }
+
     public function getcreate()
     {
         $categories = productCategories::all();
@@ -57,6 +64,15 @@ class ProductController extends Controller
 
         $products = products::all()->where('id', $id)->first();
         return view('product.show', ['products' => $products]);
+    }
+    public function shows()
+    {
+        $url = URL::current();
+        $parts = Explode('/', $url);
+        $id = $parts[count($parts) - 1];
+
+        $products = products::all()->where('id', $id)->first();
+        return view('product.shows', ['products' => $products]);
     }
 
     public function getedit()

@@ -72,6 +72,11 @@ Route::middleware([
     // hier de routes voor notitie
     Route::resource('note', noteController::class);
 
+    // hier de routes voor home-page
+    Route::get('/product', [ProductController::class, 'gethomeproduct'])->name('product');
+    Route::get('/product/shows/{productid}', [ProductController::class, 'shows'])->name('product.shows');
+
+
 });
 
 

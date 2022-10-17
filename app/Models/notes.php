@@ -8,11 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class notes extends Model
 {
     use HasFactory;
-    public function users()
+
+    protected $fillable = [
+        'users_id',
+        'company_id',
+        'note',
+        'date',
+    ];
+
+    public function user()
     {
-        return  $this->belongsTo(users::class);
+        return  $this->belongsTo(User::class);
     }
-    public function companies()
+    public function company()
     {
         return  $this->belongsTo(companies::class);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\companies;
 use App\Models\notes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,8 @@ class noteController extends Controller
     
     public function create()
     {
-        return view('notes.create');
+        $company = companies::all();
+        return view('notes.create', compact('company'));
     }
     
     public function store(Request $request)
@@ -45,7 +47,8 @@ class noteController extends Controller
 
     public function edit(notes $note)
     {
-        return view('notes.edit',compact('note'));
+        $company = companies::all();
+        return view('notes.edit',compact('note','company'));
     }
 
     public function update(Request $request, notes $notes)

@@ -20,7 +20,13 @@
                             <th>notitie</th>
                         </tr>
                         <tr>
-                            <td class="bedrijf"><input type="text" name="company_id" value="{{ $note->company_id }}"></td>
+                            <td>
+                            <select class="mb-8" name="company_id">
+                                @foreach($company as $companies)
+                                <option value="{{ $companies->id }}">{{ $companies->name }}</option>
+                                @endforeach
+                            </select>
+                            </td>
                             <td class="note"><textarea name="note" id="note" cols="75" rows="10">{{ $note->note }}</textarea></td>
                             <td class="note hidden"><input type="text" name="id" value="{{ $note->id }}"></td>
                         </tr>

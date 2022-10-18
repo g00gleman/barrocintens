@@ -18,8 +18,14 @@
                     <x-nav-link href="{{ route('product.overzicht') }}" :active="request()->routeIs('product.overzicht')">
                         {{ __('Products') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('company.overzicht') }}" :active="request()->routeIs('company.overzicht')">
+                        {{ __('Bedrijven') }}
+                    </x-nav-link>
                     <x-nav-link href="{{ route('user.overzicht') }}" :active="request()->routeIs('user.overzicht')">
                         {{ __('Users') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('maintenance.MeldingOverzicht') }}" :active="request()->routeIs('maintenance.MeldingOverzicht')">
+                        {{ __('Meldingen') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('factuur.list') }}" :active="request()->routeIs('factuur.list')">
                         {{ __('Factuur') }}

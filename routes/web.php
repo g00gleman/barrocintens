@@ -40,10 +40,9 @@ Route::middleware([
 
     Route::get('/factuur', [factuurController::class, 'getList'])->name('factuur.list');
 
-    Route::get('/factuur/{factuur}', function() {
-        $pathToFile = storage_path('app\factuur\factuur1.pdf');
-        return response()->download($pathToFile);
-     });
+    Route::get('/factuur/create', [factuurController::class, 'getCreate'])->name('factuur.create');
+
+    Route::get('/factuur/{factuur}', function() {$pathToFile = storage_path('app\factuur\factuur1.pdf');return response()->download($pathToFile);});
 
 
 });

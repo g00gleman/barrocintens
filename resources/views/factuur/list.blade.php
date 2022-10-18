@@ -5,6 +5,14 @@
         </h2>
         </x-slot>
         <section class="text-gray-600 body-font overflow-hidden">
+        
+        <div>
+            <div class="pt-15 mt-8 w-4/5 m-auto">
+                <a href="/factuur/create" class="bg-blue-400 uppercase text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl ">
+                    Factuur aanmaken
+                </a>
+            </div>
+        </div>
 
         <div class="container px-5 py-12 mx-auto">
             <div class="-my-8 divide-y-2 divide-gray-100">
@@ -14,7 +22,7 @@
                 <div class="md:flex-grow">
                 <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Factuur nr. 12398</h2>
                 <p class="leading-relaxed">2x Koffie apparaat deluxe. 28x Koffie bonen super sterk. Bedrijf: Het Test Restraurand B.V.</p>
-                <a class="text-red-500 inline-flex items-center mt-4">Factuur Bekijken
+                <a class="text-red-500 inline-flex items-center mt-4" href="/factuur/12398">Download Factuur
                     <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14"></path>
                     <path d="M12 5l7 7-7 7"></path>
@@ -33,7 +41,7 @@
                 <div class="md:flex-grow">
                 <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Factuur nr. 12563</h2>
                 <p class="leading-relaxed">1x Koffie apparaat deluxe. 2x Koffie bonen super sterk. Bedrijf: Het Wereld Restraurand B.V.</p>
-                <a class="text-red-500 inline-flex items-center mt-4" href="/factuur/12563">Factuur Bekijken
+                <a class="text-red-500 inline-flex items-center mt-4" href="/factuur/12563">Download Factuur
                     <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14"></path>
                     <path d="M12 5l7 7-7 7"></path>
@@ -52,7 +60,7 @@
                 <div class="md:flex-grow">
                 <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Factuur nr. 165424</h2>
                 <p class="leading-relaxed">Glossier echo park pug, church-key sartorial biodiesel vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon party messenger bag selfies, poke vaporware kombucha lumbersexual pork belly polaroid hoodie portland craft beer.</p>
-                <a class="text-red-500 inline-flex items-center mt-4">Factuur Bekijken
+                <a class="text-red-500 inline-flex items-center mt-4" href="/factuur/165424">Download Factuur
                     <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14"></path>
                     <path d="M12 5l7 7-7 7"></path>

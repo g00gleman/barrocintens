@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('factuur.list') }}" :active="request()->routeIs('factuur')">
+                    <x-jet-nav-link href="{{ route('factuur.list') }}" :active="request()->routeIs('factuur.list')">
                         {{ __('Factuur') }}
                     </x-jet-nav-link>
                 </div>

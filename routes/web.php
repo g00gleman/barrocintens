@@ -46,6 +46,7 @@ Route::middleware([
 
     Route::delete('/product/delete/{productid}', [ProductController::class, 'destroy'])->name('product.delete');
 
+
     Route::delete('/product_category/delete/{categoryid}', [ProductController::class, 'destroycategory'])->name('product_category.delete');
 
     // hier de routes voor user
@@ -79,10 +80,15 @@ Route::middleware([
     // hier de routes voor home-page
     Route::get('/product', [ProductController::class, 'gethomeproduct'])->name('product');
     Route::get('/product/shows/{productid}', [ProductController::class, 'shows'])->name('product.shows');
+    
+    Route::get('/factuur', [factuurController::class, 'getList'])->name('factuur.list');
+
+    Route::get('/factuur/create', [factuurController::class, 'getCreate'])->name('factuur.create');
+
+    Route::get('/factuur/{factuur}', function() {$pathToFile = storage_path('app\factuur\factuur1.pdf');return response()->download($pathToFile);});
 
 
 });
-
 
 Route::get('/factuur', [factuurController::class, 'getList'])->name('factuur.list');
 Route::get('/contact', function () { return view('contact'); })->name('contact');

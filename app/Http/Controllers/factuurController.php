@@ -12,4 +12,9 @@ class factuurController extends Controller
         return view('factuur.list');
     }
 
+    public function getCreate()
+    {
+        return view('factuur.create');
+    }
+
 }

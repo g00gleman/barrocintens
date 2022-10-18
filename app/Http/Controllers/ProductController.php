@@ -11,8 +11,16 @@ class ProductController extends Controller
 {
     public function getproduct()
     {
+        $categories = productCategories::all();
         $products = products::all();
-        return view('product.overzicht', compact('products'));
+        return view('product.overzicht', compact('products','categories'));
+    }
+
+    public function gethomeproduct()
+    {
+        $categories = productCategories::all();
+        $products = products::all();
+        return view('product', compact('products','categories'));
     }
 
     public function getcreate()
@@ -57,6 +65,15 @@ class ProductController extends Controller
         $products = products::all()->where('id', $id)->first();
         return view('product.show', ['products' => $products]);
     }
+    public function shows()
+    {
+        $url = URL::current();
+        $parts = Explode('/', $url);
+        $id = $parts[count($parts) - 1];
+
+        $products = products::all()->where('id', $id)->first();
+        return view('product.shows', ['products' => $products]);
+    }
 
     public function getedit()
     {
@@ -98,7 +115,32 @@ class ProductController extends Controller
         $post = products::where('id', $id);
         $post->delete();
 
-        return redirect('product/overzicht')
-            ->with('message', 'Jouw post is verwijderd!');
+        return redirect('product/overzicht');
+    }
+
+    public function postcategory(Request $request)
+    {
+        $productCategories = new productCategories();
+        $request->validate([
+            'name' => 'required|min:3',
+        ]);
+        
+        $productCategories->name = $request->input('name');
+        $productCategories->is_employee_only = 0;
+        $productCategories->save();
+
+        $products = products::all();
+        $categories = productCategories::all();
+        return view('product.overzicht', compact('products','categories'));
+        
+    }
+    public function destroycategory($id)
+    {
+        $post = productCategories::where('id', $id);
+        $post->delete();
+        $products = products::all();
+        $categories = productCategories::all();
+
+        return view('product.overzicht', compact('products','categories'));
     }
 }

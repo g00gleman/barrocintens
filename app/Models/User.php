@@ -59,4 +59,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function note()
+    {
+        return $this->hasMany(notes::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(companies::class);
+    }
 }

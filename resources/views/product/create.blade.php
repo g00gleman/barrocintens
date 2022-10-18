@@ -25,7 +25,6 @@
         @csrf
 
         <input 
-        
             name="name"
             placeholder="Name..."
             class="bg-transparent mb-8 block border-b-2 w-full h-20 text-6xl outline-none"></input>

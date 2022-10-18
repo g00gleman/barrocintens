@@ -9,6 +9,9 @@ class companies extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name','phone','street','HouseNumber','city','CountryCode','BkrCheckedAt'];
+
+
     public function custom_voices()
     {
         return $this->hasMany(CustomVoices::class,'company_id');
@@ -24,8 +27,8 @@ class companies extends Model
         return $this->hasMany(notes::class,'company_id');
     }
 
-    public function users()
+    public function user()
     {
-        return  $this->belongsTo(users::class);
+        return $this->belongsTo(User::class);
     }
 }

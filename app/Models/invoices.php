@@ -16,4 +16,8 @@ class invoices extends Model
     {
         return $this->hasMany(InvoiceProducts::class,'invoice_id');
     }
+    public function contract()
+    {
+        return $this->belongsTo(contract::class);
+    }
 }

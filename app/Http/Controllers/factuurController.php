@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\companies;
 use App\Models\factuur;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class factuurController extends Controller
 
     public function getCreate()
     {
-        return view('factuur.create');
+        $company = companies::all();
+        return view('factuur.create',compact('company'));
     }
 
     public function doDownloadFactuur()

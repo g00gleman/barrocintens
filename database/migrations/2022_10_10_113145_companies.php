@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('HouseNumber');
             $table->string('city');
             $table->string('CountryCode');
-            $table->date('BkrCheckedAt');
+            $table->date('BkrCheckedAt')->nullable();
             $table->timestamps();
         });
     }

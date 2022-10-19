@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\companies;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
@@ -27,8 +28,14 @@ public function store(Request $request)
         'city' => 'required',
         'HouseNumber' => 'required',
         'CountryCode' => 'required',
-        'date' => 'required',
     ]);
+
+        if ($request->bkr == "on"){
+            $Bkr = Carbon::now()->format('Y/m/d');
+        }
+        else {
+            $Bkr = null;
+        } 
 
     companies::create([
         'name' => $request->input('name'),
@@ -37,7 +44,7 @@ public function store(Request $request)
         'city' => $request->input('city'),
         'HouseNumber' => $request->input('HouseNumber'),
         'CountryCode' => $request->input('CountryCode'),
-        'BkrCheckedAt' => $request->date,
+        'BkrCheckedAt' => $Bkr,
 
     ]);
     return redirect('/company/overzicht');
@@ -66,12 +73,18 @@ public function edit(Request $request)
         'city' => 'required',
         'HouseNumber' => 'required',
         'CountryCode' => 'required',
-        'date' => 'required',
     ]);
 
         $url = URL::previous();
         $parts = Explode('/', $url);
         $id = $parts[count($parts) - 1];
+
+        if ($request->bkr == "on"){
+            $Bkr = Carbon::now()->format('Y/m/d');
+        }
+        else {
+            $Bkr = null;
+        } 
         
         $company = companies::all()->where('id', $id)->first();
 
@@ -81,7 +94,7 @@ public function edit(Request $request)
         $company->city = $request->input('city');
         $company->HouseNumber = $request->input('HouseNumber');
         $company->CountryCode = $request->input('CountryCode');
-        $company->BkrCheckedAt = $request->date;
+        $company->BkrCheckedAt = $Bkr;
 
 
         $company->save();

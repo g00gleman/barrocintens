@@ -105,7 +105,6 @@ function myFunction() {
     </div>
 <div class="ml-40 mt-8 mr-40">
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name.." title="Type in a name">
-
 </div>
 
 <table id="Bedrijf">
@@ -119,7 +118,6 @@ function myFunction() {
     <th>CountryCode</th>
     <th>BkrCheckedAt</th>
     <th>Actions</th>
-
   </tr>
 
   @foreach($company as $companies)

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ $company->name }}
+        {{ __('Bedrijf bewerken') }}
         </h2>
     </x-slot>
 
@@ -49,7 +49,17 @@
             name="CountryCode"
             value="{{ $company->CountryCode }}"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
-        <input class="mb-8" value="{{ $company->BkrCheckedAt }}" type="date" name="date"></input></br>
+            <div class="grid grid-cols-12">
+            <label for="bkr" class="col-span-2">BKR check:</label>
+            <input
+                type="checkbox" 
+                name="bkr"
+                class="mb-8 bg-transparent block border-b-2 w-10 h-10 text-xl outline-none col-span-10" 
+                @if ($company->BkrCheckedAt == null)  @else checked @endif></input>
+        </div>
+    
+        </br>
+        
         <button    
             type="submit"
             class="uppercase mt-15 bg-yellow-400 text-gray-100 text-lg font-extrabold py-3 px-5 rounded-2xl">

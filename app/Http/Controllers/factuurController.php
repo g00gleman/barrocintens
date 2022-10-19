@@ -17,4 +17,11 @@ class factuurController extends Controller
         return view('factuur.create');
     }
 
+    public function doDownloadFactuur()
+    {
+        $pathToFile = storage_path('app\factuur\factuur1.pdf');
+        
+        return response()->download($pathToFile);
+    }
+
 }

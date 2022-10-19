@@ -85,7 +85,7 @@ Route::middleware([
 
     Route::get('/factuur/create', [factuurController::class, 'getCreate'])->name('factuur.create');
 
-    Route::get('/factuur/{factuur}', function() {$pathToFile = storage_path('app\factuur\factuur1.pdf');return response()->download($pathToFile);});
+    Route::get('/factuur/{factuur}', [factuurController::class, 'doDownloadFactuur']);
 
 
 });

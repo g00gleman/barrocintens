@@ -1,14 +1,13 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="container flex flex-wrap justify-between items-center mx-auto">
         <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                    </a>
-                </div>
+
+        <!-- Logo -->
+                <a href="" class="flex items-center">
+                    <img src="/fotos/Logo5_groot.png" class="mr-3 h-6 sm:h-9" alt="Barrocintens logo">
+                    <span class="self-center text-xl font-semibold whitespace-nowrap">Barrocintens</span>
+                </a>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -83,6 +82,27 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('product.overzicht') }}" :active="request()->routeIs('product.overzicht')">
+                {{ __('Products') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('company.overzicht') }}" :active="request()->routeIs('company.overzicht')">
+                {{ __('Bedrijven') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('user.overzicht') }}" :active="request()->routeIs('user.overzicht')">
+                {{ __('Users') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('maintenance.MeldingOverzicht') }}" :active="request()->routeIs('maintenance.MeldingOverzicht')">
+                {{ __('Meldingen') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('factuur.list') }}" :active="request()->routeIs('factuur.list')">
+                {{ __('Factuur') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('note.index') }}" :active="request()->routeIs('note.index')">
+                {{ __('Notes') }}
             </x-responsive-nav-link>
         </div>
 

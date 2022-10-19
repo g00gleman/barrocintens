@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\rollen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+
 
 class UserController extends Controller
 {
-    public function getuser(){
-            $user = User::all();
-            return view('user.overzicht', compact('user'));
-    }
+
+public function getuser(){
+        $user = User::all();
+        $userrollen = rollen::all();
+        return view('user.overzicht', compact('user','userrollen'));
+}
 
     public function getcreate()
 {
@@ -28,7 +30,7 @@ public function store(Request $request)
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
     ]);
 
-    $user = User::create([
+    User::create([
         'name' => $request->input('name'),
         'username' => $request->input('username'),
         'email' => $request->input('email'),
@@ -47,8 +49,11 @@ public function getedit()
         $id = $parts[count($parts) - 1];
 
         $user = User::all()->where('id', $id)->first();
-
-        return view('user.edit', ['user' => $user]);
+        rollen::create([
+            'user_id' => $id,
+        ]);
+        $userrollen = rollen::all()->where('user_id', $id)->first();
+        return view('user.edit', compact('user','userrollen'));
     
 }
 
@@ -57,7 +62,7 @@ public function edit(Request $request)
     $request->validate([
         'name' => ['required', 'string', 'max:255'],
         'username' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'email' => [ 'string', 'max:255'],
     ]);
 
         $url = URL::previous();
@@ -65,6 +70,107 @@ public function edit(Request $request)
         $id = $parts[count($parts) - 1];
         
         $user = User::all()->where('id', $id)->first();
+        $userrollen = rollen::all()->where('user_id', $id)->first();
+
+        if ($request->Admin == "on"){
+            $Admin = 1;
+        }
+        else {
+            $Admin = 0;
+        } 
+
+        if ($request->Headfinance == "on"){
+            $Headfinance = 1;
+        }
+        else {
+            $Headfinance = 0;
+        } 
+
+        if ($request->Finance == "on"){
+            $Finance = 1;
+        }
+        else {
+            $Finance = 0;
+        } 
+        
+        if ($request->Headmaintenance == "on"){
+            $Headmaintenance = 1;
+        }
+        else {
+            $Headmaintenance = 0;
+        } 
+
+        if ($request->Maintenance == "on"){
+            $Maintenance = 1;
+        }
+        else {
+            $Maintenance = 0;
+        } 
+
+        if ($request->Headsales == "on"){
+            $Headsales = 1;
+        }
+        else {
+            $Headsales = 0;
+        } 
+
+        if ($request->Sales == "on"){
+            $Sales = 1;
+        }
+        else {
+            $Sales = 0;
+        } 
+
+        if ($request->Headinkoop == "on"){
+            $Headinkoop = 1;
+        }
+        else {
+            $Headinkoop = 0;
+        } 
+
+        if ($request->Inkoop == "on"){
+            $Inkoop = 1;
+        }
+        else {
+            $Inkoop = 0;
+        } 
+
+        if ($request->Klant == "on"){
+            $Klant = 1;
+        }
+        else {
+            $Klant = 0;
+        } 
+
+        if($userrollen == null){
+            rollen::create([
+                'user_id' => $id,
+                'admin' => $Admin,
+                'head_finance' => $Headfinance,
+                'finance' => $Finance,
+                'head_maintenance' => $Headmaintenance,
+                'maintenance' => $Maintenance,
+                'head_sales' => $Headsales,
+                'sales' => $Sales,
+                'head_inkoop' => $Headinkoop,
+                'inkoop' => $Inkoop,
+                'klant' => $Klant,
+            ]);
+        }else{
+            $userrollen = rollen::all()->where('user_id', $id)->first();
+            $userrollen->user_id = $id;
+            $userrollen->admin = $Admin;   
+            $userrollen->head_finance = $Headfinance;  
+            $userrollen->finance = $Finance;  
+            $userrollen->head_maintenance = $Headmaintenance;  
+            $userrollen->maintenance = $Maintenance;  
+            $userrollen->head_sales = $Headsales;  
+            $userrollen->sales = $Sales;  
+            $userrollen->head_inkoop = $Headinkoop; 
+            $userrollen->inkoop = $Inkoop;
+            $userrollen->klant = $Klant;  
+            $userrollen->save();
+        }
 
         $user->name = $request->input('name');
         $user->username = $request->input('username');

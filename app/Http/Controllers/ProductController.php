@@ -44,9 +44,9 @@ class ProductController extends Controller
 
 
         products::create([
-            'name' => $request->input('name'),
-            'price' => $request->input('price'),
-            'description' => $request->input('description'),
+            'product_name' => $request->input('name'),
+            'product_price' => $request->input('price'),
+            'product_description' => $request->input('description'),
             'category_id' => $request->input('selcategories'),
             'image_path' => $newImageName,
             
@@ -91,9 +91,9 @@ class ProductController extends Controller
     public function edit(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required',
+            'product_name' => 'required',
+            'product_description' => 'required',
+            'product_price' => 'required',
         ]);
 
             $url = URL::previous();
@@ -102,9 +102,9 @@ class ProductController extends Controller
             
             $products = products::all()->where('id', $id)->first();
 
-            $products->name = $request->input('name');
-            $products->description = $request->input('description');
-            $products->price = $request->input('price');
+            $products->product_name = $request->input('name');
+            $products->product_description = $request->input('description');
+            $products->product_price = $request->input('price');
             $products->save();
             return redirect('product/overzicht');
         

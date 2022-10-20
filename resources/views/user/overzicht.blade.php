@@ -130,7 +130,43 @@ function myFunction() {
     <td>{{$users->name}}</td>
     <td>{{$users->username}}</td>
     <td>{{$users->email}}</td>
-    <td>-</td>
+    <td>  
+      @foreach($userrollen as $rollen)
+      @if($rollen->user_id == $users->id) 
+        @if($rollen->admin == 1)
+        Admin,  
+        @endif
+        @if($rollen->head_finance == 1)
+        Head finance,  
+        @endif
+        @if($rollen->finance == 1)
+        Finance,  
+        @endif
+        @if($rollen->head_maintenance == 1)
+        Head maintenance,  
+        @endif
+        @if($rollen->maintenance == 1)
+        Maintenance,  
+        @endif
+        @if($rollen->head_sales == 1)
+        Head sales,  
+        @endif
+        @if($rollen->sales == 1)
+        Sales,  
+        @endif
+        @if($rollen->head_inkoop == 1)
+        Head inkoop,  
+        @endif
+        @if($rollen->inkoop == 1)
+        Inkoop,  
+        @endif
+        @if($rollen->klant == 1)
+            Klant,  
+        @endif
+      @endif
+          
+      @endforeach
+    </td>
     <td>{{$users->created_at}}</td>
     <td>{{$users->updated_at}}</td>
     <td><a href="/user/edit/{{ $users->id }}" class="button">Wijzigen</a><button type="submit" class="button1">Delete</button>  </td>

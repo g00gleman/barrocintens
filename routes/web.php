@@ -77,10 +77,8 @@ Route::middleware([
     // hier de routes voor maintenance
     Route::get('/maintenance/MeldingOverzicht', [MaintenanceController::class, 'getmaintenance'])->name('maintenance.MeldingOverzicht');
 
-    // hier de routes voor home-page
-    Route::get('/product', [ProductController::class, 'gethomeproduct'])->name('product');
-    Route::get('/product/shows/{productid}', [ProductController::class, 'shows'])->name('product.shows');
-    
+
+    // hier de routes voor factuur   
     Route::get('/factuur', [factuurController::class, 'getList'])->name('factuur.list');
 
     Route::get('/factuur/create', [factuurController::class, 'getCreate'])->name('factuur.create');
@@ -90,5 +88,8 @@ Route::middleware([
 
 });
 
+// hier de routes voor home-page
+Route::get('/product', [ProductController::class, 'gethomeproduct'])->name('product');
+Route::get('/product/shows/{productid}', [ProductController::class, 'shows'])->name('product.shows');
 Route::get('/factuur', [factuurController::class, 'getList'])->name('factuur.list');
 Route::get('/contact', function () { return view('contact'); })->name('contact');

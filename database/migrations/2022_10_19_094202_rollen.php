@@ -13,19 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rollen', function (Blueprint $table) {
+        Schema::create('rollens', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->boolean('admin');
-            $table->boolean('head_finance');
-            $table->boolean('finance'); 
-            $table->boolean('head_maintenance');
-            $table->boolean('maintenance');
-            $table->boolean('head_sales');
-            $table->boolean('sales');
-            $table->boolean('head_inkoop');
-            $table->boolean('inkoop');
-            $table->boolean('klant');
+            $table->integer('admin')->nullable();
+            $table->integer('head_finance')->nullable();
+            $table->integer('finance')->nullable(); 
+            $table->integer('head_maintenance')->nullable();
+            $table->integer('maintenance')->nullable();
+            $table->integer('head_sales')->nullable();
+            $table->integer('sales')->nullable();
+            $table->integer('head_inkoop')->nullable();
+            $table->integer('inkoop')->nullable();
+            $table->integer('klant')->nullable();
             $table->timestamps();
          }); 
     }
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rollen');
+        Schema::dropIfExists('rollens');
     }
 };

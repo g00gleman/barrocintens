@@ -5,13 +5,13 @@
         </h2>
     </x-slot>
     <section class="text-gray-600 body-font overflow-hidden">
-        <form class="w-full max-w-lg container px-5 py-12 mx-auto">
+        <form class="w-full max-w-lg container px-5 py-12 mx-auto" action="{{ route('factuur.create') }}" method="POST" enctype="multipart/form-data">
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Bedrijfs naam:
                 </label>
-                <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password">
+                <select name="company_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password">
                   @foreach($company as $companies)
                     <option value="{{$companies->id}}">{{$companies->id}}  {{$companies->name}}</option>
                   @endforeach
@@ -39,12 +39,12 @@
                 </div>
               </div>
               <div class="pt-15 mt-8 w-full m-auto ml-3">
-                <a href="/factuur/create" type="submit" class="bg-blue-400 uppercase text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl ">
+                <button href="/factuur/create" type="submit" class="bg-blue-400 uppercase text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl ">
                     Submit
-                </a>
-                <a href="/factuur" type="submit" class="uppercase text-red-400 text-xs font-extrabold py-3 px-5 underline">
+                </button>
+                <a href="/factuur" class="uppercase text-red-400 text-xs font-extrabold py-3 px-5 underline">
                   Cancel
-              </a>
+                </a>
             </div>
             </div>
           </form>
@@ -52,7 +52,7 @@
 
     <script>
 $(document).on('click', '.addProduct', function(){
-          var html = '<div class="flex flex-wrap -mx-3 mb-1"><div class="w-full px-3"><select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"><option value="test">test 45345435 4326543253</option></select></div></div>';
+          var html = '<div class="flex flex-wrap -mx-3 mb-1"><div class="w-3/4 px-3"><select name="product_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">@foreach($products as $Products)<option value="{{$Products->id}}">{{$Products->id}}  {{$Products->product_name}}</option>@endforeach</select></div><div class="w-1/4 px-3"><input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" value="1" min="1" name="amount"></input></div></div>';
         $(this).parent().append(html);
       }); 
     </script>

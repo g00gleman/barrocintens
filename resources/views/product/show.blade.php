@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ $products->name }}
+        {{ $products->product_name }}
         </h2>
     </x-slot>
     <div class="w-4/5 m-auto pt-20">
@@ -11,11 +11,11 @@
         </div>
     </div>
     <span class="text-gray-500">
-        Price: €<span class="font-bold italic text-gray-800">{{ $products->price }}
+        Price: €<span class="font-bold italic text-gray-800">{{ $products->product_price }}
     </span>
 
     <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
-        {{ $products->description }}
+        {{ $products->product_description }}
     </p>
 </div>
 </x-app-layout>

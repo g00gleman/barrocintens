@@ -22,6 +22,6 @@ class ProductSeeder extends Seeder
             'instal_price' => "289",
             'category_id' => "1",];
 
-        DB::table('products')->insert($product);
+        DB::table('products')->insert($products);
     }
 }

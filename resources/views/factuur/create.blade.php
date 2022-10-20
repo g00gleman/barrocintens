@@ -11,7 +11,7 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Bedrijfs naam:
                 </label>
-                <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password">
+                <select id="company_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password">
                   @foreach($company as $companies)
                     <option value="{{$companies->id}}">{{$companies->id}}  {{$companies->name}}</option>
                   @endforeach
@@ -52,7 +52,7 @@
 
     <script>
 $(document).on('click', '.addProduct', function(){
-          var html = '<div class="flex flex-wrap -mx-3 mb-1"><div class="w-full px-3"><select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"><option value="test">test 45345435 4326543253</option></select></div></div>';
+          var html = '<div class="flex flex-wrap -mx-3 mb-1"><div class="w-3/4 px-3"><select id="product_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">@foreach($products as $Products)<option value="{{$Products->id}}">{{$Products->id}}  {{$Products->product_name}}</option>@endforeach</select></div><div class="w-1/4 px-3"><input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" value="1" min="1"></input></div></div>';
         $(this).parent().append(html);
       }); 
     </script>

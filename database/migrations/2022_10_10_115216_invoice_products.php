@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('product_name')->constrained(); 
             $table->decimal('product_price')->constrained(); 
             $table->integer('amount');
-            $table->decimal('product_total_price');
         }); 
     }
 

@@ -13,6 +13,10 @@
     <span class="text-gray-500">
         Price: €<span class="font-bold italic text-gray-800">{{ $products->price }}
     </span>
+    <br>
+    <span class="text-gray-500">
+        Brand: <span class="font-bold italic text-gray-800">{{ $products->brand }}
+    </span>
 
     <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
         {{ $products->description }}

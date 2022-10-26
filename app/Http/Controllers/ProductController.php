@@ -34,6 +34,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
+            'brand' => 'required',
             'description' => 'required',
             'image' => 'required|mimes:jpg,png,jpeg|max:5048'
         ]);
@@ -46,6 +47,7 @@ class ProductController extends Controller
         products::create([
             'name' => $request->input('name'),
             'price' => $request->input('price'),
+            'brand' => $request->input('brand'),
             'description' => $request->input('description'),
             'category_id' => $request->input('selcategories'),
             'image_path' => $newImageName,
@@ -94,6 +96,7 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'brand' => 'required',
         ]);
 
             $url = URL::previous();
@@ -105,6 +108,7 @@ class ProductController extends Controller
             $products->name = $request->input('name');
             $products->description = $request->input('description');
             $products->price = $request->input('price');
+            $products->brand = $request->input('brand');
             $products->save();
             return redirect('product/overzicht');
         

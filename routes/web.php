@@ -32,6 +32,7 @@ Route::middleware([
 
     // hier de routes voor in admin pagina's
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
     // hier de routes voor products
     Route::get('/product/overzicht', [ProductController::class, 'getproduct'])->name('product.overzicht');
     Route::post('/product/overzicht', [ProductController::class, 'postcategory'])->name('product.overzicht');

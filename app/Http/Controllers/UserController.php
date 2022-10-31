@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\rollen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 
 
@@ -34,7 +36,7 @@ public function store(Request $request)
         'name' => $request->input('name'),
         'username' => $request->input('username'),
         'email' => $request->input('email'),
-        'password' => "123welkom",
+        'password' => Hash::make('123welkom'),
     ]);
 
     return redirect('/user/overzicht');
@@ -49,10 +51,16 @@ public function getedit()
         $id = $parts[count($parts) - 1];
 
         $user = User::all()->where('id', $id)->first();
-        rollen::create([
-            'user_id' => $id,
-        ]);
+ 
+
         $userrollen = rollen::all()->where('user_id', $id)->first();
+        if($userrollen == null){
+            rollen::create([
+                'user_id' => $id,
+            ]);
+            $userrollen = rollen::all()->where('user_id', $id)->first();
+        }
+        
         return view('user.edit', compact('user','userrollen'));
     
 }
@@ -142,43 +150,45 @@ public function edit(Request $request)
             $Klant = 0;
         } 
 
-        if($userrollen == null){
-            rollen::create([
-                'user_id' => $id,
-                'admin' => $Admin,
-                'head_finance' => $Headfinance,
-                'finance' => $Finance,
-                'head_maintenance' => $Headmaintenance,
-                'maintenance' => $Maintenance,
-                'head_sales' => $Headsales,
-                'sales' => $Sales,
-                'head_inkoop' => $Headinkoop,
-                'inkoop' => $Inkoop,
-                'klant' => $Klant,
-            ]);
-        }else{
-            $userrollen = rollen::all()->where('user_id', $id)->first();
-            $userrollen->user_id = $id;
-            $userrollen->admin = $Admin;   
-            $userrollen->head_finance = $Headfinance;  
-            $userrollen->finance = $Finance;  
-            $userrollen->head_maintenance = $Headmaintenance;  
-            $userrollen->maintenance = $Maintenance;  
-            $userrollen->head_sales = $Headsales;  
-            $userrollen->sales = $Sales;  
-            $userrollen->head_inkoop = $Headinkoop; 
-            $userrollen->inkoop = $Inkoop;
-            $userrollen->klant = $Klant;  
-            $userrollen->save();
-        }
+
+        $userrollen = rollen::all()->where('user_id', $id)->first();
+        $userrollen->user_id = $id;
+        $userrollen->admin = $Admin;   
+        $userrollen->head_finance = $Headfinance;  
+        $userrollen->finance = $Finance;  
+        $userrollen->head_maintenance = $Headmaintenance;  
+        $userrollen->maintenance = $Maintenance;  
+        $userrollen->head_sales = $Headsales;  
+        $userrollen->sales = $Sales;  
+        $userrollen->head_inkoop = $Headinkoop; 
+        $userrollen->inkoop = $Inkoop;
+        $userrollen->klant = $Klant;  
+        $userrollen->save();
+        
 
         $user->name = $request->input('name');
         $user->username = $request->input('username');
         $user->email = $request->input('email');
 
         $user->save();
+
+        if(Auth::user()->id == $id){
+            $userrollen = rollen::all()->where('user_id', $id)->first();
+
+            session()->put('admin', $userrollen->admin);
+            session()->put('head_finance', $userrollen->head_finance);
+            session()->put('finance', $userrollen->finance);
+            session()->put('head_maintenance', $userrollen->head_maintenance);
+            session()->put('maintenance', $userrollen->maintenance);
+            session()->put('head_sales', $userrollen->head_sales);
+            session()->put('sales', $userrollen->sales);
+            session()->put('head_inkoop', $userrollen->head_inkoop);
+            session()->put('inkoop', $userrollen->inkoop);
+            session()->put('klant', $userrollen->klant);
+        }
+        
         return redirect('user/overzicht');
-    
+
 }
 
 public function destroy($id)
@@ -188,4 +198,5 @@ public function destroy($id)
 
     return redirect('user/overzicht');
 }
+
 }

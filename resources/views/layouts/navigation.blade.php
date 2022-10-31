@@ -10,28 +10,40 @@
                 </a>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">    
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(session()->get('admin') == 1 || session()->get('klant') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
                     <x-nav-link href="{{ route('product.overzicht') }}" :active="request()->routeIs('product.overzicht')">
                         {{ __('Products') }}
                     </x-nav-link>
+                    @endif
+                    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
                     <x-nav-link href="{{ route('company.overzicht') }}" :active="request()->routeIs('company.overzicht')">
                         {{ __('Bedrijven') }}
                     </x-nav-link>
+                    @endif
+                    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
                     <x-nav-link href="{{ route('user.overzicht') }}" :active="request()->routeIs('user.overzicht')">
                         {{ __('Users') }}
                     </x-nav-link>
+                    @endif
+                    @if(session()->get('admin') == 1 || session()->get('maintenance') == 1|| session()->get('head_maintenance') == 1)
                     <x-nav-link href="{{ route('maintenance.MeldingOverzicht') }}" :active="request()->routeIs('maintenance.MeldingOverzicht')">
                         {{ __('Meldingen') }}
                     </x-nav-link>
+                    @endif
+                    @if(session()->get('admin') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)
                     <x-nav-link href="{{ route('factuur.list') }}" :active="request()->routeIs('factuur.list')">
                         {{ __('Factuur') }}
                     </x-nav-link>
+                    @endif
+                    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
                     <x-nav-link href="{{ route('note.index') }}" :active="request()->routeIs('note.index')">
                         {{ __('Notes') }}
                     </x-nav-link>
+                    @endif
                 </div>
             </div>
 

@@ -33,6 +33,10 @@
             placeholder="Price... 4533.35"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
         <input 
+            name="brand"
+            placeholder="Brand..."
+            class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
+        <input 
             name="description"
             placeholder="Description..."
             class="py-20 mb-8 bg-transparent block border-b-2 w-full h-60 text-xl outline-none"></input>

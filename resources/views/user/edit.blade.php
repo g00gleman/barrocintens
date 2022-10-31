@@ -113,7 +113,6 @@
             <input
                 type="checkbox" 
                 name="Klant"
-                value="1"
                 class="mb-8 bg-transparent block border-b-2 w-10 h-10 text-xl outline-none col-span-10"
                 @if ($userrollen->klant == null)  @else checked @endif></input>
         </div>

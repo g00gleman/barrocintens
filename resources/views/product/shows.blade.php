@@ -75,7 +75,9 @@
             <img src="{{ asset('images/' . $products->image_path) }}" alt="">
         </div>
     </div>
-
+    <span class="text-gray-500">
+        Brand: <span class="font-bold italic text-gray-800">{{ $products->brand }}
+    </span>
     <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
         {{ $products->product_description }}
     </p>
@@ -98,7 +100,7 @@
     <h3>You need to contact us if you want more information about our product</h3>
     <input 
         name="phone"
-        placeholder="Phone..."
+        placeholder="Phone number..."
         class="bg-transparent mb-8 block border-b-2 w-full h-10 text-3xl outline-none"></input>
         <button    
             class="uppercase  bg-yellow-400 text-gray-100 text-lg font-extrabold py-2 px-3 rounded-2xl">

@@ -6,6 +6,7 @@
     </x-slot>
     <section class="text-gray-600 body-font overflow-hidden">
         <form class="w-full max-w-lg container px-5 py-12 mx-auto" action="{{ route('factuur.create') }}" method="POST" enctype="multipart/form-data">
+          @csrf
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -39,7 +40,7 @@
                 </div>
               </div>
               <div class="pt-15 mt-8 w-full m-auto ml-3">
-                <button href="/factuur/create" type="submit" class="bg-blue-400 uppercase text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl ">
+                <button type="submit" class="bg-blue-400 uppercase text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl ">
                     Submit
                 </button>
                 <a href="/factuur" class="uppercase text-red-400 text-xs font-extrabold py-3 px-5 underline">

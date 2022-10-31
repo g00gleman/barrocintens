@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ $products->name }}
+        {{ $products->product_name }}
         </h2>
     </x-slot>
 
@@ -26,15 +26,19 @@
 
         <input 
             name="name"
-            value="{{ $products->name }}"
+            value="{{ $products->product_name }}"
             class="bg-transparent block border-b-2 w-full h-20 text-6xl outline-none">
          <input 
             name="price"
-            value="{{ $products->price }}"
+            value="{{ $products->product_price }}"
+            class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
+        <input 
+            name="brand"
+            value="{{ $products->brand }}"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
         <input 
             name="description"
-            value="{{ $products->description }}"
+            value="{{ $products->product_description }}"
             class="py-20 bg-transparent block border-b-2 w-full h-60 text-xl outline-none"></input> 
 
         <button    

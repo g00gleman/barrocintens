@@ -26,11 +26,11 @@
 
         <input 
             name="name"
-            value="{{ $products->product_name }}"
+            value="{{ $products->name }}"
             class="bg-transparent block border-b-2 w-full h-20 text-6xl outline-none">
          <input 
             name="price"
-            value="{{ $products->product_price }}"
+            value="{{ $products->price }}"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
         <input 
             name="brand"
@@ -38,7 +38,7 @@
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
         <input 
             name="description"
-            value="{{ $products->product_description }}"
+            value="{{ $products->description }}"
             class="py-20 bg-transparent block border-b-2 w-full h-60 text-xl outline-none"></input> 
 
         <button    

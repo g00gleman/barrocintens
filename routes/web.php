@@ -83,6 +83,8 @@ Route::middleware([
     Route::get('/factuur', [factuurController::class, 'getList'])->name('factuur.list');
 
     Route::get('/factuur/create', [factuurController::class, 'getCreate'])->name('factuur.create');
+    Route::post('/factuur/create', [factuurController::class, 'doCreate'])->name('factuur.create');
+
 
     Route::get('/factuur/{factuur}', [factuurController::class, 'doDownloadFactuur']);
 

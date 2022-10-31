@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\rollen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 
 
@@ -35,7 +36,7 @@ public function store(Request $request)
         'name' => $request->input('name'),
         'username' => $request->input('username'),
         'email' => $request->input('email'),
-        'password' => "123welkom",
+        'password' => Hash::make('123welkom'),
     ]);
 
     return redirect('/user/overzicht');

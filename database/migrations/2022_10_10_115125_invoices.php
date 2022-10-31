@@ -26,6 +26,8 @@ return new class extends Migration
             $table->integer('total_price')->constrained();
             $table->dateTime('date');
             $table->dateTime('paid_at');
+            $table->dateTime('updated_at');
+            $table->dateTime('created_at');
         });
     }
 

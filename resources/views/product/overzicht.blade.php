@@ -81,9 +81,17 @@
         </div>
     </div>
     @endif
-
-
+<div class="ml-40 mt-8 mr-40">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name.." title="Type in a name">
+</div>
+<table id="product">
 @foreach ($products as $post)
+<tr>
+  </tr>
+  <tr>
+    <td hidden>{{ $post->name }}</td>
+    <td hidden>{{ $post->brand }}</td>
+    <td>
     <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
         <div>
             <img src="{{ asset('images/' . $post->image_path) }}" alt="">
@@ -135,8 +143,11 @@
                 </span>
             @endif
         </div>
-    </div>    
+    </div>
+    </td>
+  </tr>    
 @endforeach
+</table>
 
 <body>
 
@@ -209,6 +220,24 @@ span.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+  }
+}
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("product");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
   }
 }
 </script>

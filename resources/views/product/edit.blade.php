@@ -33,6 +33,10 @@
             value="{{ $products->price }}"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
         <input 
+            name="installprice"
+            value="{{ $products->install_price }}"
+            class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
+        <input 
             name="brand"
             value="{{ $products->brand }}"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>

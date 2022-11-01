@@ -34,6 +34,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
+            'installprice' => 'required',
             'brand' => 'required',
             'description' => 'required',
             'image' => 'required|mimes:jpg,png,jpeg|max:5048'
@@ -47,6 +48,7 @@ class ProductController extends Controller
         products::create([
             'name' => $request->input('name'),
             'price' => $request->input('price'),
+            'install_price' => $request->input('installprice'),
             'brand' => $request->input('brand'),
             'description' => $request->input('description'),
             'category_id' => $request->input('selcategories'),
@@ -107,6 +109,7 @@ class ProductController extends Controller
 
             $products->name = $request->input('name');
             $products->description = $request->input('description');
+            $products->install_price = $request->input('installprice');
             $products->price = $request->input('price');
             $products->brand = $request->input('brand');
             $products->save();

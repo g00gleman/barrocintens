@@ -33,6 +33,10 @@
             placeholder="Price... 4533.35"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
         <input 
+            name="installprice"
+            placeholder="install Price... 200.50"
+            class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
+        <input 
             name="brand"
             placeholder="Brand..."
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>

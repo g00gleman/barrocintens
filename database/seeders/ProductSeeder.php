@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
 
             ['name' => "Barroc Intens Italian Light",
             'description' => "",
-            'image_path' => "/images/fotos/barroc-intens-italian-light.jpg",
+            'image_path' => "fotos/barroc-intens-italian-light.jpg",
             'brand' => "",
             'price' => "499",
             'install_price' => "289",

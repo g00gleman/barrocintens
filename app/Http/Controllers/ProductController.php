@@ -46,7 +46,7 @@ class ProductController extends Controller
 
         products::create([
             'name' => $request->input('name'),
-            '+price' => $request->input('price'),
+            'price' => $request->input('price'),
             'brand' => $request->input('brand'),
             'description' => $request->input('description'),
             'category_id' => $request->input('selcategories'),

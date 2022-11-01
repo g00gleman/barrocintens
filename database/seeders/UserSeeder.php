@@ -20,13 +20,17 @@ class UserSeeder extends Seeder
         ['name' => "Admin",
         'username' => "Admin",
         'email' => "admin@gmail.com",
-        'password' => Hash::make('admin123'),];
+        'password' => Hash::make('admin123'),
+        'created_at' => now(),
+        'updated_at' => now(),];
 
         DB::table('users')->insert($user);
 
         $rollen =
         ['user_id' => "1",
-        'admin' => 1,];
+        'admin' => 1,
+        'created_at' => now(),
+        'updated_at' => now(),];
 
         DB::table('rollens')->insert($rollen);
     }

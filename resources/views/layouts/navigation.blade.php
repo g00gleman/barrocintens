@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
     <!-- Primary Navigation Menu -->
-    <div class="container flex flex-wrap justify-between items-center mx-auto">
+    <div class="container justify-between items-center mx-auto">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -10,7 +10,7 @@
                 </a>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">    
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>

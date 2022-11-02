@@ -35,7 +35,7 @@
 
 .button1:hover {opacity: 1}
 
-#Bedrijf {
+#Meldingen {
   font-family: roboto;
   border-collapse: collapse;
   width: 79%;
@@ -44,7 +44,7 @@
   margin-top: 20px;
 }
 
-#Bedrijf td, #Bedrijf th {
+#Meldingen td, #Meldingen th {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -56,12 +56,12 @@
   margin-top: 40px;
 }
 
-#Bedrijf tr:nth-child(even){background-color: #f2f2f2;}
+#Meldingen tr:nth-child(even){background-color: #f2f2f2;}
 
 #customers tr:hover {background-color: #ddd;}
 
 
-#Bedrijf th {
+#Meldingen th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -71,11 +71,11 @@
 </style>
 
 <script>
-function myFunction() {
+function name() {
   var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
+  input = document.getElementById("myName");
   filter = input.value.toUpperCase();
-  table = document.getElementById("Bedrijf");
+  table = document.getElementById("Meldingen");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[1];
@@ -86,14 +86,14 @@ function myFunction() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
   }
 }
 function company() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("mycompany");
   filter = input.value.toUpperCase();
-  table = document.getElementById("Bedrijf");
+  table = document.getElementById("Meldingen");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[2];
@@ -104,7 +104,7 @@ function company() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
   }
 }
 </script>
@@ -116,30 +116,46 @@ function company() {
         Overzicht meldingen
         </h2>
     </x-slot>
-<div class="ml-40 mt-8 mr-40">
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name.." title="Type in a name">
-<input type="text" id="mycompany" onkeyup="company()" placeholder="Search for company.." title="Type in a name">
-</div>
+
+    <div class="ml-40 mt-8 mr-40">
+        <div class="my-5">
+            <a href="{{ route('maintenance.create') }}" class="bg-yellow-400 uppercase ml-2 text-gray-100 text-xs font-roboto py-3 px-5 rounded-3xl ">werkbon aanmaken</a>
+        </div>
+
+        <input type="text" id="myName" onkeyup="name()" placeholder="Search for name.." title="Type in a name">
+        <input type="text" id="mycompany" onkeyup="company()" placeholder="Search for company.." title="Type in a name">
+    </div>
 
 
-<table id="Bedrijf">
-  <tr>
-    <th>ID</th>
-    <th>Remark</th>
-    <th>Company id</th>
-    <th>Made</th>
-  </tr>
+        <table id="Meldingen">
+        <tr>
+            <th>Medewerker</th>
+            <th>Bedrijf</th>
+            <th>Beschrijving</th>
+            <th>Materialen</th>
+            <th>Aangemaakt op</th>
+        </tr>
 
-  @foreach($melding as $meldingen)
-  
-  <tr>
-    <td>{{$meldingen->id}}</td>
-    <td>{{$meldingen->remark}}</td>
-    <td>{{$meldingen->company_id}}</td>
-    <td>{{$meldingen->date_added}}</td>
-  </tr>
-  @endforeach
-</table>
+        @foreach($melding as $meldingen)
+
+        <tr>
+            <td>{{$meldingen->remark}}</td>
+            <td>{{$meldingen->company_id}}</td>
+            <td>{{$meldingen->date_added}}</td>
+        </tr>
+        @endforeach
+
+        @foreach($werkbon as $werkbon)
+
+        <tr>
+            <td>{{$werkbon->user->name}}</td>
+            <td>{{$werkbon->company->name}}</td>
+            <td>{{$werkbon->description}}</td>
+            <td>{{$werkbon->materials}}</td>
+            <td>{{$werkbon->created_at}}</td>
+        </tr>
+        @endforeach
+        </table>
 
 
 

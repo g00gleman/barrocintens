@@ -77,9 +77,9 @@ Route::middleware([
 
     // hier de routes voor maintenance
     Route::get('/maintenance/MeldingOverzicht', [MaintenanceController::class, 'getmaintenance'])->name('maintenance.MeldingOverzicht');
+    Route::resource('maintenance', MaintenanceController::class);
 
-
-    // hier de routes voor factuur   
+    // hier de routes voor factuur
     Route::get('/factuur', [factuurController::class, 'getList'])->name('factuur.list');
 
     Route::get('/factuur/create', [factuurController::class, 'getCreate'])->name('factuur.create');

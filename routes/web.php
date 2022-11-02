@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\factuurController;
 use App\Http\Controllers\MaintenanceController;
-
+use App\Http\Controllers\CalenderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +49,10 @@ Route::middleware([
 
 
     Route::delete('/product_category/delete/{categoryid}', [ProductController::class, 'destroycategory'])->name('product_category.delete');
+    // calander routes hier
+
+    Route::get('calendar', [CalenderController::class, 'index']);
+    Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
 
     // hier de routes voor user
     Route::get('/user/overzicht', [UserController::class, 'getuser'])->name('user.overzicht');

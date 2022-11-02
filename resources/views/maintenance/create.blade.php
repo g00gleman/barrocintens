@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="grid grid-cols-2">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Notities aanmaken') }}
+                {{ __('Werkbon aanmaken') }}
             </h2>
         </div>
     </x-slot>
@@ -11,24 +11,23 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
-                <form action="{{ route('note.store') }}" method="POST">
+                <form action="{{ route('maintenance.store') }}" method="POST">
                 @csrf
                     <table class="w-full text-center">
                         <tr>
-                            <th>bedrijf</th>
-                            <th>notitie</th>
-                            <th>datum</th>
+                            <th>Bedrijf</th>
+                            <th>hoe zijn de problemen verholpen?</th>
+                            <th>welke materialen zijn gebruikt?</th>
                         </tr>
                         <tr>
-                            <td>
+                        <td>
                             <select class="mb-8" name="company_id">
                                 @foreach($company as $companies)
                                 <option value="{{ $companies->id }}">{{ $companies->name }}</option>
                                 @endforeach
                             </select>
-                            </td>
-                            <td class="note"><textarea name="note" id="note" cols="75" rows="10"></textarea></td>
-                            <td class="date"><input type="date" name="date"></td>
+                            <td class="description"><textarea name="description" id="description" cols="30" rows="8"></textarea></td>
+                            <td class="materials"><textarea name="materials" id="materials" cols="30" rows="8"></textarea></td>
                         </tr>
                     </table>
                     <div class="text-center mb-2">

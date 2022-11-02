@@ -65,6 +65,11 @@ class User extends Authenticatable
         return $this->hasMany(notes::class);
     }
 
+    public function werkbon()
+    {
+        return $this->hasMany(werkbon::class);
+    }
+
     public function company()
     {
         return $this->belongsTo(companies::class);

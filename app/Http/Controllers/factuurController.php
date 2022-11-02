@@ -42,12 +42,12 @@ class factuurController extends Controller
         // }
 
         $company_id = $request->input('company_id');
+        $product_id = $request->input('product_id');
 
         $company = companies::all()->where('id', $company_id)->first();   
   
 
-        invoices::create([
-
+        $invoice = invoices::create([
             'company_id' => $company_id,
             'company_name' => $company->name,
             'company_street' => $company->street,
@@ -57,22 +57,20 @@ class factuurController extends Controller
         ]);
 
         
-        foreach($invoiceProducts as $invoice_products){
+        //foreach($product_id as $productID){
+            $productID = $request->input('product_id');
+            $products = products::all()->where('id', $productID)->first();
 
-            $product_id = $request->input('product_id');
+            invoiceProducts::create([
+                'invoice_id' => $invoice->id,
+                'product_id' => $productID,
+                'product_name' => $products->name,
+                'product_price' => $products->price,
+                'amount' => $request->input($productID),
 
-            $products = products::all()->where('id', $product_id)->first();
+            ]);
 
-            $invoice_products->invoice_id = $invoice->id;
-            $invoice_products->product_id = $product_id;
-            $invoice_products->product_name = $products->name;
-            $invoice_products->product_price = $products->price;
-            $invoice_products->amount = $request->input('amount');
-
-            print_r($invoice_products);
-
-            $invoice_products->save();
-        }
+        //}
 
 
         return redirect('factuur');

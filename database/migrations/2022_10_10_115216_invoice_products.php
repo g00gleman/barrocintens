@@ -19,7 +19,9 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained(); 
             $table->string('product_name')->constrained(); 
             $table->decimal('product_price')->constrained(); 
-            $table->integer('amount');
+            $table->integer('amount')->constrained();
+            $table->dateTime('updated_at');
+            $table->dateTime('created_at');
         }); 
     }
 

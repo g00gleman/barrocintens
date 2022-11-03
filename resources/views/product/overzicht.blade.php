@@ -1,3 +1,5 @@
+
+
 <!-- Modal -->
 <style>
 .modal {
@@ -121,7 +123,7 @@
                 <span class="float-right">
                     <a 
                         href="/product/edit/{{ $post->id }}"
-                        class="text-gray-700 italic hover:text-gray-900 pb-1 border-b-2">
+                        class="text-gray-700 roboto hover:text-gray-900 pb-1 border-b-2">
                         Edit
                     </a>
                 </span>
@@ -148,7 +150,7 @@
   </tr>    
 @endforeach
 </table>
-
+                                            
 <body>
 
 <!-- The Modal -->

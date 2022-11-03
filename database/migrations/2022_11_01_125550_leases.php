@@ -13,10 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contract', function (Blueprint $table) {
+        Schema::create('leases', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('date');
-        });
+            $table->foreignId('company_id')->constrained();
+            $table->integer('total_price')->nullable();
+            $table->integer('weken')->nullable();
+            $table->integer('dagen')->nullable();
+            $table->integer('duur')->nullable();
+            $table->timestamps();
+         }); 
     }
 
     /**
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('leases');
     }
 };

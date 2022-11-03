@@ -18,8 +18,8 @@ class invoices extends Model
     {
         return $this->hasMany(InvoiceProducts::class,'invoice_id');
     }
-    public function contract()
+    public function leasecontracten()
     {
-        return $this->belongsTo(contract::class);
+        return $this->belongsTo(leasecontracten::class);
     }
 }

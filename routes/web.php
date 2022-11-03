@@ -6,6 +6,7 @@ use App\Http\Controllers\noteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\factuurController;
+use App\Http\Controllers\LeaseController;
 use App\Http\Controllers\MaintenanceController;
 
 /*
@@ -87,6 +88,18 @@ Route::middleware([
 
 
     Route::get('/factuur/{factuur}', [factuurController::class, 'doDownloadFactuur']);
+
+    // hier de routes voor leasecontracten   
+    Route::get('/leasecontracten/overzicht', [LeaseController::class, 'getcontract'])->name('leasecontracten.overzicht');
+
+    Route::get('/leasecontracten/create', [LeaseController::class, 'getcreate'])->name('leasecontracten.create');
+    Route::post('/leasecontracten/create', [LeaseController::class, 'storecreate'])->name('leasecontracten.create');
+
+    Route::get('/leasecontracten/edit/{leaseid}', [LeaseController::class, 'getedit'])->name('leasecontracten.edit');
+    Route::post('/leasecontracten/edit', [LeaseController::class, 'edit'])->name('leasecontracten.edit');
+
+    Route::delete('/leasecontracten/delete/{leaseid}', [LeaseController::class, 'destroy'])->name('leasecontracten.delete');
+
 
 
 });

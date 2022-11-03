@@ -1,3 +1,78 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-yellow-400.uppercase.text-gray-100.text-xs.font-roboto.py-3.px-5.rounded-3xl {
+    background: black;
+    color: white;
+    border-radius: 30px;
+    border-width: 1px;
+  }
+
+  .bg-yellow-400.uppercase.text-gray-100.text-xs.font-roboto.py-3.px-5.rounded-3xl:hover {
+    color: #facc15;
+  }
+
+  .uppercase.bg-yellow-400.text-gray-100.text-lg.font-extrabold-roboto.py-4.px-8.rounded-3xl {
+    background: black;
+    color: white;
+    border-radius: 30px;
+    border-width: 1px;
+  }
+
+  .uppercase.bg-yellow-400.text-gray-100.text-lg.font-extrabold-roboto.py-4.px-8.rounded-3xl:hover {
+    color: #facc15;
+  }
+
+  .text-gray-700.font-bold-roboto.text-5xl.pb-4 {
+    padding-top: 80px;
+  }
+
+  .text-red-500.pr-3 {
+    padding: 17px 25px 17px 25px !important;
+    background: black;
+    border-radius: 30px;
+    margin-top: -17px;
+    color: white;
+    font-size: 1.2rem;
+  }
+
+  .text-red-500.pr-3:hover {
+    color: red;
+  }
+
+  .text-gray-700.italic.hover\:text-gray-900.pb-1.border-b-2 {
+    padding: 17px 35px 17px 35px !important;
+    background: black;
+    border-radius: 30px;
+    margin-top: -17px;
+    color: white;
+    font-size: 1.2rem;
+  }
+
+  .text-gray-700.italic.hover\:text-gray-900.pb-1.border-b-2:hover {
+    color: facc15;
+  }
+
+  .bg-blue-400.uppercase.text-gray-100.text-xs.font-extrabold.py-3.px-5.rounded-3xl:hover {
+    color: #facc15;
+  }
+
+.bg-blue-400.uppercase.text-gray-100.text-xs.font-extrabold.py-3.px-5.rounded-3xl {
+  background: black;
+  color: white;
+  border-radius: 30px;
+  border-width: 1px;
+}
+
+.text-red-500.inline-flex.items-center.mt-4 {
+    padding: 17px 35px 17px 35px !important;
+    background: black;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.2rem;
+  }
+
+  .text-red-500.inline-flex.items-center.mt-4:hover {
+    color: #facc15;
+  }

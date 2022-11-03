@@ -52,9 +52,20 @@
     </section>
 
     <script>
-$(document).on('click', '.addProduct', function(){
-          var html = '<div class="flex flex-wrap -mx-3 mb-1"><div class="w-3/4 px-3"><select name="product_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">@foreach($products as $Products)<option value="{{$Products->id}}">{{$Products->id}}  {{$Products->name}}</option>@endforeach</select></div><div class="w-1/4 px-3"><input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" value="1" min="1" name="amount"></input></div></div>';
-        $(this).parent().append(html);
+      var count = 0;
+
+      $(document).on('click', '.addProduct', function(){
+              count++;
+              var html = '<div class="flex flex-wrap-mx-3 mb-1"><div class="w-3/4 px-3"><select onchange="getval(this);" id="' +count+ '" name="product_id" class="product_id appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">@foreach($products as $Products)<option id="{{$Products->id}}" value="{{$Products->id}}">{{$Products->id}}  {{$Products->name}}</option>@endforeach</select></div><div class="w-1/4 px-3 amount"><input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" value="1" min="1" id="' +count+ '" name="1"></input></div></div>';
+              $(this).parent().append(html);
       }); 
+
+      function getval(sel)
+      {
+          var productID = $(sel).children(":selected").attr("id");
+          var countedID = $(sel).attr("id");
+          $( ".amount" ).children( "#" +countedID).attr('name', productID);
+      }
+
     </script>
 </x-app-layout>

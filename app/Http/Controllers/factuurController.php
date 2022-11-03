@@ -42,7 +42,7 @@ class factuurController extends Controller
         // }
 
         $company_id = $request->input('company_id');
-        $product_id = $request->input('product_id');
+        //$product_id = $request->input('product_id');
 
         $company = companies::all()->where('id', $company_id)->first();   
   

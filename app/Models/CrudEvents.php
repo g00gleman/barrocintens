@@ -10,11 +10,11 @@ class CrudEvents extends Model
 
 {
     use HasFactory;
-    
+
     protected $fillable = [
-        'event_name', 
-        'event_start', 
-        'event_end'
-    ];    
-    
+        'title',
+        'start',
+        'end'
+    ];
+
 }

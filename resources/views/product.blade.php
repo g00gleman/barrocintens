@@ -85,3 +85,4 @@ function myFunction2() {
   }
 }
 </script>
+@include('layouts.footer')

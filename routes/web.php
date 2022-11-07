@@ -97,7 +97,7 @@ Route::middleware([
     Route::get('/leasecontracten/overzicht', [LeaseController::class, 'getcontract'])->name('leasecontracten.overzicht');
 
     Route::get('/leasecontracten/create', [LeaseController::class, 'getcreate'])->name('leasecontracten.create');
-    Route::post('/leasecontracten/create', [LeaseController::class, 'storecreate'])->name('leasecontracten.create');
+    Route::post('/leasecontracten/create', [LeaseController::class, 'create'])->name('leasecontracten.create');
 
     Route::get('/leasecontracten/edit/{leaseid}', [LeaseController::class, 'getedit'])->name('leasecontracten.edit');
     Route::post('/leasecontracten/edit', [LeaseController::class, 'edit'])->name('leasecontracten.edit');

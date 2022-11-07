@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('leases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained();
-            $table->integer('total_price')->nullable();
+            $table->decimal('total_price')->nullable();
             $table->integer('weken')->nullable();
             $table->integer('dagen')->nullable();
             $table->integer('duur')->nullable();

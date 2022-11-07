@@ -138,3 +138,4 @@ window.onclick = function(event) {
   }
 }
 </script>
+@include('layouts.footer')

@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <a href="" class="flex items-center">
+                <a href="https://barrocintens.dev/" class="flex items-center">
                     <img src="/fotos/logo/Logo5_groot.png" class="mr-3 h-6 sm:h-9" alt="Barrocintens logo">
                     <span class="self-center text-xl font-semibold whitespace-nowrap">Barrocintens</span>
                 </a>
@@ -19,7 +19,7 @@
                         {{ __('Products') }}
                     </x-nav-link>
                     @endif
-                    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
+                    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)
                     <x-nav-link href="{{ route('company.overzicht') }}" :active="request()->routeIs('company.overzicht')">
                         {{ __('Bedrijven') }}
                     </x-nav-link>
@@ -32,6 +32,11 @@
                     @if(session()->get('admin') == 1 || session()->get('maintenance') == 1|| session()->get('head_maintenance') == 1)
                     <x-nav-link href="{{ route('maintenance.MeldingOverzicht') }}" :active="request()->routeIs('maintenance.MeldingOverzicht')">
                         {{ __('Meldingen') }}
+                    </x-nav-link>
+                    @endif
+                    @if(session()->get('admin') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)
+                    <x-nav-link href="{{ route('leasecontracten.overzicht') }}" :active="request()->routeIs('leasecontracten.overzicht')">
+                        {{ __('leasecontracten') }}
                     </x-nav-link>
                     @endif
                     @if(session()->get('admin') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)

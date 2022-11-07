@@ -55,4 +55,3 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
-@include('layouts.footer')

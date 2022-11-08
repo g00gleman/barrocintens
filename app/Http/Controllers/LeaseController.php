@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\leases;
 use App\Models\companies;
+use App\Models\invoiceProducts;
+use App\Models\invoices;
 use App\Models\leasesProducts;
 use App\Models\products;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
-use Symfony\Component\Console\Input\Input;
 
 class LeaseController extends Controller
 {
@@ -58,15 +58,25 @@ class LeaseController extends Controller
             'duur' => $request->input('duur'),
             
         ]);
+
+        $company_id = $request->input('selcompany');
+        $company = companies::all()->where('id', $company_id)->first();   
+
+        $invoices =invoices::create([
+            'leases_id' => $leases->id,
+            'company_id' => $company_id,
+            'company_name' => $company->name,
+            'company_street' => $company->street,
+            'company_house_number' => $company->HouseNumber,
+            'company_city' => $company->city,
+            'company_country_code' => $company->CountryCode,
+        ]);
         $productID = $request->input('product_id');
 
         $totaalprice = 0;
-        
 
         foreach($productID as $product_id){
             
-           
-
             $products = products::all()->where('id', $product_id)->first();
             $amount = $request->input($product_id);
 
@@ -79,21 +89,41 @@ class LeaseController extends Controller
 
             ]);
 
+            $productID[] = invoiceProducts::create([
+                'invoice_id' => $invoices->id,
+                'product_id' => $product_id,
+                'product_name' => $products->name,
+                'product_price' => $products->price,
+                'amount' => $amount,
+
+            ]);
+
             $price = $products->price * $amount;
             $totaalprice = $totaalprice + $price;
-           
         }
+
+
 
         $lease = leases::all()->where('id', $leases->id)->first();
         $lease->total_price = $totaalprice;
         $lease->save();
+
+        $invoices = invoices::all()->where('id', $invoices->id)->first();
+        $invoices->total_price = $totaalprice;
+        $invoices->save();
+
         return redirect('/leasecontracten/overzicht');
     }
 
     public function destroy($id)
     {
         $lease = leases::where('id', $id);
+        $invoices = invoices::where('leases_id', $id)->first();
         $lease_product = leasesProducts::where('leases_id', $id);
+        $invoiceProducts = invoiceProducts::where('invoice_id', $invoices->id);
+
+        $invoiceProducts->delete();
+        $invoices->delete();
         $lease_product->delete();
         $lease->delete();
 

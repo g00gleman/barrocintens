@@ -13,7 +13,18 @@ class factuurController extends Controller
 {
     public function getList()
     {
-        return view('factuur.list');
+        $invoices = invoices::with(['invoice_products'])->get();
+        $invoice_products = invoiceProducts::all();
+
+        foreach($invoices as $invoice)
+        {
+            //dump($invoice->invoice_products);
+            $invoiceArr = array('invoice_id' => $invoice->id);
+            //dump($invoiceArr);
+        }
+
+
+        return view('factuur.list', compact('invoices'), compact('invoice_products'), compact('invoiceArr'));
     }
 
     public function getCreate()

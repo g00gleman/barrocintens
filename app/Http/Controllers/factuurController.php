@@ -17,15 +17,7 @@ class factuurController extends Controller
         $invoices = invoices::with(['invoice_products'])->get();
         $invoice_products = invoiceProducts::all();
 
-        foreach($invoices as $invoice)
-        {
-            //dump($invoice->invoice_products);
-            $invoiceArr = array('invoice_id' => $invoice->id);
-            //dump($invoiceArr);
-        }
-
-
-        return view('factuur.list', compact('invoices', 'invoice_products', 'invoiceArr'));
+        return view('factuur.list', compact('invoices', 'invoice_products'));
     }
 
     public function getCreate()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\invoiceProducts;
 use App\Models\invoices;
 use App\Models\companies;
@@ -24,7 +25,7 @@ class factuurController extends Controller
         }
 
 
-        return view('factuur.list', compact('invoices'), compact('invoice_products'), compact('invoiceArr'));
+        return view('factuur.list', compact('invoices', 'invoice_products', 'invoiceArr'));
     }
 
     public function getCreate()
@@ -88,11 +89,21 @@ class factuurController extends Controller
         return redirect('factuur');
     }
 
-    public function doDownloadFactuur()
+    public function doDownloadFactuur($id)
     {
-        $pathToFile = storage_path('app\factuur\factuur1.pdf');
+        $invoice = invoices::find($id);
+        $invoice_products = invoiceProducts::all()->where('invoice_id', $id)->first();
+
+        $subtotaal = bcmul($invoice_products->amount, $invoice_products->product_price, 2);
+
+
+        $pdf = Pdf::loadView('factuur.pdf', compact('invoice', 'invoice_products', 'subtotaal'));
         
-        return response()->download($pathToFile);
+        return $pdf->download('factuur.pdf');
+
+        // $pathToFile = storage_path('app\factuur\factuur1.pdf');
+        
+        // return response()->download($pathToFile);
     }
 
 }

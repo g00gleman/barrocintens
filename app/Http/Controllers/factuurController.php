@@ -91,8 +91,13 @@ class factuurController extends Controller
 
     public function doDownloadFactuur($id)
     {
-        $show = invoices::find($id);
-        $pdf = Pdf::loadView('factuur.pdf', compact('show'));
+        $invoice = invoices::find($id);
+        $invoice_products = invoiceProducts::all()->where('invoice_id', $id)->first();
+
+        $subtotaal = bcmul($invoice_products->amount, $invoice_products->product_price, 2);
+
+
+        $pdf = Pdf::loadView('factuur.pdf', compact('invoice', 'invoice_products', 'subtotaal'));
         
         return $pdf->download('factuur.pdf');
 

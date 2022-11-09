@@ -96,7 +96,7 @@
     <td>
     <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
         <div>
-            <img src="{{ asset('images/' . $post->image_path) }}" alt="">
+            <img style="max-width: auto; height: 400px; object-fit: center;" src="{{ asset('images/' . $post->image_path) }}" alt="">
         </div>
         <div>
             <h2 class="text-gray-700 font-bold-roboto text-5xl pb-4">

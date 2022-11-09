@@ -54,6 +54,8 @@
                 <p><strong>&nbsp;</strong></p>
                 </td>
                 <td width="302">
+                    {{-- C:\laragon\www\BarrocIntens\public\fotos\logo\Logo4_klein.png --}}
+                    <img src="fotos/logo/Logo4_klein.png" alt="">
                     <p><em>Barroc Intens</em></p>
                     <p><em>Terheijdenseweg 350</em></p>
                     <p><em>4826 AA&nbsp; Breda</em></p>
@@ -73,20 +75,33 @@
                 <td class="tg-0lax">Prijs</td>
                 <td class="tg-0lax">Subtotaal</td>
             </tr>
+            <?php
+                $price = '0';
+
+            foreach($invoice_products as $products){
+                
+                $subtotaal = bcmul($products->amount, $products->product_price, 2);
+
+                $price+= $subtotaal;
+                $total_price = number_format($price, 2);
+
+                ?>
             <tr>
-                <td class="tg-0pky">{{ $invoice_products->amount }}x</td>
-                <td class="tg-0lax">{{ $invoice_products->product_id }}</td>
-                <td class="tg-0lax">{{ $invoice_products->product_name }}</td>
-                <td class="tg-0lax">&euro;{{ $invoice_products->product_price }}</td>
+                <td class="tg-0pky">{{ $products->amount }}x</td>
+                <td class="tg-0lax">{{ $products->product_id }}</td>
+                <td class="tg-0lax">{{ $products->product_name }}</td>
+                <td class="tg-0lax">&euro;{{ $products->product_price }}</td>
                 <td class="tg-0lax">&euro;{{ $subtotaal }}</td>
             </tr>
+            <?php 
+            } ?>
 
             </thead>
         </table>
     </div>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    <p>Totaal:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &euro;5637,-</p>
+    <p>Totaal:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &euro;{{ $total_price }}</p>
     <p>&nbsp;</p>
     <p><em>&nbsp;</em></p>
     <p><em>&nbsp;</em></p>

@@ -91,7 +91,7 @@ Route::middleware([
     Route::post('/factuur/create', [factuurController::class, 'store'])->name('factuur.create');
 
 
-    Route::get('/factuur/{factuur}', [factuurController::class, 'doDownloadFactuur']);
+    Route::get('/factuur/{factuur}', [factuurController::class, 'doDownloadFactuur'])->name('factuur.pdf');
 
     // hier de routes voor leasecontracten   
     Route::get('/leasecontracten/overzicht', [LeaseController::class, 'getcontract'])->name('leasecontracten.overzicht');

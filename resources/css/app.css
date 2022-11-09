@@ -76,3 +76,44 @@
   .text-red-500.inline-flex.items-center.mt-4:hover {
     color: #facc15;
   }
+
+  th {
+    background-color: black !important;
+    color: white;
+  }
+
+  .button {
+    background-color: black !important;
+    opacity: 1;
+  }
+
+  .button:hover {
+    color: #facc15;
+  }
+
+  .button1:hover {
+    color: red;
+  }
+
+  .button1 {
+    opacity: 1;
+    background-color: black !important;
+  }
+
+  @media(max-width:991px){
+    #Bedrijf {
+      scale: 0.8;
+      margin-left: -74px;
+    }
+
+    #customers {
+      scale: 0.9;
+      margin-left: 40px;
+      padding-top: 40px !important;
+    }
+
+    .bg-white.border-gray-200.px-2.sm\:px-4.py-2\.5.rounded {
+      scale: 0.8;
+      margin-left: -100px;
+    }
+  }

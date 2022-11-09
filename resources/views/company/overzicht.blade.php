@@ -98,11 +98,13 @@ function myFunction() {
         Bedrijf overzicht
         </h2>
     </x-slot>
+    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
     <div class="pt-15 mt-8 w-4/5 m-auto">
             <a href="/company/create" class="bg-yellow-400 uppercase text-gray-100 text-xs font-roboto py-3 px-5 rounded-3xl ">
                 Create Bedrijf
             </a>
     </div>
+    @endif
 <div class="ml-40 mt-8 mr-40">
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name.." title="Type in a name">
 </div>
@@ -135,7 +137,11 @@ function myFunction() {
     <td>{{$companies->city}}</td>
     <td>{{$companies->CountryCode}}</td>
     <td>{{$companies->BkrCheckedAt}}</td>
-    <td><a href="/company/edit/{{ $companies->id }}" class="button">Wijzigen</a><button type="submit" class="button1">Delete</button>  </td>
+    <td><a href="/company/edit/{{ $companies->id }}" class="button">Wijzigen</a>
+    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
+    <button type="submit" class="button1">Delete</button>
+    @endif  
+    </td>
   </tr>
   </form>
 

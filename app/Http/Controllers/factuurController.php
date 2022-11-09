@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\invoiceProducts;
 use App\Models\invoices;
 use App\Models\companies;
@@ -13,7 +14,18 @@ class factuurController extends Controller
 {
     public function getList()
     {
-        return view('factuur.list');
+        $invoices = invoices::with(['invoice_products'])->get();
+        $invoice_products = invoiceProducts::all();
+
+        foreach($invoices as $invoice)
+        {
+            //dump($invoice->invoice_products);
+            $invoiceArr = array('invoice_id' => $invoice->id);
+            //dump($invoiceArr);
+        }
+
+
+        return view('factuur.list', compact('invoices', 'invoice_products', 'invoiceArr'));
     }
 
     public function getCreate()
@@ -42,10 +54,9 @@ class factuurController extends Controller
         // }
 
         $company_id = $request->input('company_id');
-        //$product_id = $request->input('product_id');
-
         $company = companies::all()->where('id', $company_id)->first();   
-  
+        
+        $productID = $request->input('product_id');
 
         $invoice = invoices::create([
             'company_id' => $company_id,
@@ -57,30 +68,42 @@ class factuurController extends Controller
         ]);
 
         
-        //foreach($product_id as $productID){
-            $productID = $request->input('product_id');
-            $products = products::all()->where('id', $productID)->first();
+        foreach($productID as $product_id){
+            
 
-            invoiceProducts::create([
+            $products = products::all()->where('id', $product_id)->first();
+            $amount = $request->input($product_id);
+
+            $productID[] = invoiceProducts::create([
                 'invoice_id' => $invoice->id,
-                'product_id' => $productID,
+                'product_id' => $product_id,
                 'product_name' => $products->name,
                 'product_price' => $products->price,
-                'amount' => $request->input($productID),
+                'amount' => $amount,
 
             ]);
 
-        //}
+        }
 
 
         return redirect('factuur');
     }
 
-    public function doDownloadFactuur()
+    public function doDownloadFactuur($id)
     {
-        $pathToFile = storage_path('app\factuur\factuur1.pdf');
+        $invoice = invoices::find($id);
+        $invoice_products = invoiceProducts::all()->where('invoice_id', $id)->first();
+
+        $subtotaal = bcmul($invoice_products->amount, $invoice_products->product_price, 2);
+
+
+        $pdf = Pdf::loadView('factuur.pdf', compact('invoice', 'invoice_products', 'subtotaal'));
         
-        return response()->download($pathToFile);
+        return $pdf->download('factuur.pdf');
+
+        // $pathToFile = storage_path('app\factuur\factuur1.pdf');
+        
+        // return response()->download($pathToFile);
     }
 
 }

@@ -36,6 +36,7 @@
             name="email"
             value="{{ $user->email }}"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
+        @if(session()->get('admin') == 1)
         <div class="grid grid-cols-12">
             <label for="Admin" class="col-span-2">Admin:</label>
             <input
@@ -44,6 +45,7 @@
                 class="mb-8 bg-transparent block border-b-2 w-10 h-10 text-xl outline-none col-span-10"
                 @if ($userrollen->admin == null)  @else checked @endif></input>
         </div>
+        @endif
         <div class="grid grid-cols-12">
             <label for="Headfinance" class="col-span-2">Head finance:</label>
             <input

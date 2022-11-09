@@ -2,6 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+
+  background: #3B5998;
+  color: white;
+  width: 4%;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  width: 4%;
+
+
+}
+
+.fa-instagram {
+  background: #f40083;
+  color: white;
+  width: 4%;
+
+
+}
+
+.fa-snapchat-ghost {
+  background: #fffc00;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  width: 4%;
+}
+
 .bg-yellow-400.uppercase.text-gray-100.text-xs.font-roboto.py-3.px-5.rounded-3xl {
     background: black;
     color: white;
@@ -115,5 +149,15 @@
     .bg-white.border-gray-200.px-2.sm\:px-4.py-2\.5.rounded {
       scale: 0.8;
       margin-left: -100px;
+    }
+    
+    .fa {
+      padding: 20px;
+      font-size: 25px;
+      text-decoration: none;
+      margin: 5px 2px;
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: auto;
     }
   }

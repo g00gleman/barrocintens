@@ -53,6 +53,9 @@ Route::middleware([
 
     Route::get('calendar', [CalenderController::class, 'index']);
     Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
+    Route::get('calendar/show/{id}', [CalenderController::class, 'show'])->name('calender.show');
+    Route::get('calendar/edit/{id}', [CalenderController::class, 'edit'])->name('calender.edit');
+    Route::get('calendar/store/{id}', [CalenderController::class, 'store'])->name('calender.store');
 
     // hier de routes voor user
     Route::get('/user/overzicht', [UserController::class, 'getuser'])->name('user.overzicht');

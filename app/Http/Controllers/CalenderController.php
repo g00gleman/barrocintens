@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CrudEvents;
+
 class CalenderController extends Controller
 {
     public function index(Request $request)
@@ -29,7 +30,18 @@ class CalenderController extends Controller
               return response()->json($event);
              break;
 
-           case 'edit':
+           case 'show':
+              $event = array(
+                  'title' => $request->title,
+                  'start' => $request->start,
+                  'end' => $request->end,
+                  'id' => $request->id,
+              );
+
+              return response()->json($event);
+             break;
+
+             case 'edit':
               $event = CrudEvents::find($request->id)->update([
                   'title' => $request->title,
                   'start' => $request->start,
@@ -49,5 +61,18 @@ class CalenderController extends Controller
              # ...
              break;
         }
+    }
+
+    public function show(Request $request, $id)
+    {
+        $event = CrudEvents::where('id', $id)->first();
+
+        return view('calender.show', compact('event'));
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $event = CrudEvents::where('id', $id)->first();
+        return view('calender.show',compact('event'));
     }
 }

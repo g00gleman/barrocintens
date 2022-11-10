@@ -13,7 +13,7 @@ class CalenderController extends Controller
                 ->get(['id', 'title', 'start', 'end']);
              return response()->json($data);
         }
-        return view('calander');
+        return view('calender.calander');
     }
 
     public function calendarEvents(Request $request)
@@ -51,12 +51,6 @@ class CalenderController extends Controller
               return response()->json($event);
              break;
 
-           case 'delete':
-              $event = CrudEvents::find($request->id)->delete();
-
-              return response()->json($event);
-             break;
-
            default:
              # ...
              break;
@@ -73,6 +67,28 @@ class CalenderController extends Controller
     public function edit(Request $request, $id)
     {
         $event = CrudEvents::where('id', $id)->first();
+        return view('calender.edit',compact('event'));
+    }
+
+    public function store(Request $request, $id)
+    {
+        CrudEvents::where('id', $id)->update([
+            'title' => $request->title,
+            'start' => $request->start,
+            'end' => $request->end,
+        ]);
+
+        $event = CrudEvents::where('id', $id)->first();
         return view('calender.show',compact('event'));
     }
+
+    public function destroy(Request $request, $id)
+    {
+        CrudEvents::where('id', $id)->delete();
+
+        return redirect('calendar');
+    }
+
+
+
 }

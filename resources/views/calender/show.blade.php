@@ -21,6 +21,8 @@
                 </span>
                 <br>
                 <button class="text-black border border-black py-1.5 px-2.5 rounded-xll">edit</button>
+
+                <a href="{{ route('calender.destroy',$event->id) }}" class="text-black border border-black py-1.5 px-2.5 rounded-xll">delete</a>
         </form>
 </div>
 </x-app-layout>

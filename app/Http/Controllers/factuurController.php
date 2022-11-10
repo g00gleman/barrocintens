@@ -23,7 +23,7 @@ class factuurController extends Controller
     public function getCreate()
     {
         $company = companies::all();
-        $products = products::all();
+        $products = products::all()->where('category_id', '!=', '3');
         return view('factuur.create',compact('company'),compact('products'));
     }
 

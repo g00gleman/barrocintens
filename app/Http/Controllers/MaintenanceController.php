@@ -7,6 +7,7 @@ use App\Models\maintenaceAppointments;
 use App\Models\werkbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MaintenanceController extends Controller
 {
@@ -39,6 +40,12 @@ class MaintenanceController extends Controller
             'materials' => $request->materials ,
         ];
         werkbon::create($data);
+
+        $adminMail = ' barroc.intens@gmail.com';
+
+        Mail::to($adminMail)
+            ->send($data);
+
 
         return redirect()->route('maintenance.MeldingOverzicht')->with('success','werkbon has been created successfully.');
     }

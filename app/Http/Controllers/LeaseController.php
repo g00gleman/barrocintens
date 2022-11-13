@@ -39,6 +39,7 @@ class LeaseController extends Controller
 
         return view('leasecontracten.create', compact('lease','company','products'));
     }
+    
     public function create(Request $request)
     {
         $request->validate([
@@ -80,6 +81,10 @@ class LeaseController extends Controller
             $products = products::all()->where('id', $product_id)->first();
             $amount = $request->input($product_id);
 
+            $totaal = $products->amount - $amount;
+            $products->amount =  $totaal;
+            $products->save();
+
             $productID[] = leasesProducts::create([
                 'leases_id' => $leases->id,
                 'product_id' => $product_id,
@@ -117,10 +122,23 @@ class LeaseController extends Controller
 
     public function destroy($id)
     {
+        
         $lease = leases::where('id', $id);
         $invoices = invoices::where('leases_id', $id)->first();
         $lease_product = leasesProducts::where('leases_id', $id);
         $invoiceProducts = invoiceProducts::where('invoice_id', $invoices->id);
+
+        $totaalproduct = leasesProducts::all()->where('leases_id', $id);
+
+        foreach($totaalproduct as $totaalproduct){
+
+            $products = products::all()->where('id', $totaalproduct->product_id)->first();
+            $amount =  $totaalproduct->amount;
+
+            $totaal = $products->amount + $amount;
+            $products->amount =  $totaal;
+            $products->save();
+        }
 
         $invoiceProducts->delete();
         $invoices->delete();

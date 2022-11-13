@@ -22,6 +22,11 @@
                         {{ __('Products') }}
                     </x-nav-link>
                     @endif
+                    @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
+                    <x-nav-link href="{{ route('voorraad.overzicht') }}" :active="request()->routeIs('voorraad.overzicht')">
+                        {{ __('Voorraad') }}
+                    </x-nav-link>
+                    @endif
                     @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)
                     <x-nav-link href="{{ route('company.overzicht') }}" :active="request()->routeIs('company.overzicht')">
                         {{ __('Bedrijven') }}
@@ -37,9 +42,14 @@
                         {{ __('Meldingen') }}
                     </x-nav-link>
                     @endif
+                    @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
+                    <x-nav-link href="{{ route('offerte.overzicht') }}" :active="request()->routeIs('offerte.overzicht')">
+                        {{ __('Offerte') }}
+                    </x-nav-link>
+                    @endif
                     @if(session()->get('admin') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)
                     <x-nav-link href="{{ route('leasecontracten.overzicht') }}" :active="request()->routeIs('leasecontracten.overzicht')">
-                        {{ __('leasecontracten') }}
+                        {{ __('Leasecontracten') }}
                     </x-nav-link>
                     @endif
                     @if(session()->get('admin') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)

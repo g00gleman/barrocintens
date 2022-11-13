@@ -13,18 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('voorraads', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description'); 
-            $table->string('image_path');
-            $table->decimal('price');
-            $table->decimal('install_price');
-            $table->string('brand');
+            $table->foreignId('user_id')->constrained(); 
+            $table->foreignId('product_id')->constrained(); 
             $table->integer('amount');
-            $table->integer('category_id');
+            $table->integer('check')->nullable();
             $table->timestamps();
-         }); 
+
+        }); 
     }
 
     /**
@@ -34,7 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
-
+        Schema::dropIfExists('voorraads');
     }
 };

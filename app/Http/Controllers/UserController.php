@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\companies;
 use App\Models\User;
 use App\Models\rollen;
 use Illuminate\Http\Request;
@@ -14,14 +15,16 @@ class UserController extends Controller
 {
 
 public function getuser(){
+        $company = companies::all();
         $user = User::all();
         $userrollen = rollen::all();
-        return view('user.overzicht', compact('user','userrollen'));
+        return view('user.overzicht', compact('user','userrollen','company'));
 }
 
     public function getcreate()
 {
-    return view('user.create');
+    $company = companies::all();
+    return view('user.create', compact('company'));
 }
 
 public function store(Request $request)
@@ -32,13 +35,13 @@ public function store(Request $request)
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
     ]);
 
-    User::create([
+    $user = User::create([
         'name' => $request->input('name'),
         'username' => $request->input('username'),
         'email' => $request->input('email'),
+        'company_id' => $request->input('selcompany'),
         'password' => Hash::make('123welkom'),
     ]);
-
     return redirect('/user/overzicht');
         
 }
@@ -51,8 +54,9 @@ public function getedit()
         $id = $parts[count($parts) - 1];
 
         $user = User::all()->where('id', $id)->first();
+        $company = companies::all();
 
-
+        
         $userrollen = rollen::all()->where('user_id', $id)->first();
         if($userrollen == null){
             rollen::create([
@@ -61,7 +65,7 @@ public function getedit()
             $userrollen = rollen::all()->where('user_id', $id)->first();
         }
         
-        return view('user.edit', compact('user','userrollen'));
+        return view('user.edit', compact('user','userrollen','company'));
     
 }
 
@@ -169,6 +173,7 @@ public function edit(Request $request)
         $user->name = $request->input('name');
         $user->username = $request->input('username');
         $user->email = $request->input('email');
+        $user->company_id = $request->input('selcompany');
 
         $user->save();
 

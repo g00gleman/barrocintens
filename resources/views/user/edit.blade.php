@@ -36,6 +36,12 @@
             name="email"
             value="{{ $user->email }}"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
+        <select class="mb-8" name="selcompany">
+            <option value="0">Geen</option>
+            @foreach($company as $companies)
+            <option value="{{ $companies->id }}">{{ $companies->name }}</option>
+            @endforeach
+        </select>
         @if(session()->get('admin') == 1)
         <div class="grid grid-cols-12">
             <label for="Admin" class="col-span-2">Admin:</label>

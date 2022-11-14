@@ -26,23 +26,28 @@
 
         <input 
             name="name"
-            placeholder="Name..."
+            placeholder="Naam..."
             class="bg-transparent mb-8 block border-b-2 w-full h-20 text-6xl outline-none"></input>
         <input 
             name="price"
-            placeholder="Price... 4533.35"
+            placeholder="Prijs... 4533.35"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
         <input 
             name="installprice"
-            placeholder="install Price... 200.50"
+            placeholder="Installeer prijs... 200.50"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
         <input 
             name="brand"
-            placeholder="Brand..."
+            placeholder="Merk..."
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
         <input 
+            name="amount"
+            placeholder="Hoeveelheid..."
+            type="number" 
+            class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>    
+        <input 
             name="description"
-            placeholder="Description..."
+            placeholder="Beschrijving..."
             class="py-20 mb-8 bg-transparent block border-b-2 w-full h-60 text-xl outline-none"></input>
             <select class="mb-8" name="selcategories">
                 @foreach($categories as $category)
@@ -53,7 +58,7 @@
         <div class=" mb-8 bg-grey-lighter pt-15">
             <label class="w-44 flex flex-col items-center px-2 py-3 bg-white-rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer">
                 <span class="mt-2 text-base leading-normal">
-                    Select an image
+                    Kies een foto
                 </span>
                 <input 
                     type="file"

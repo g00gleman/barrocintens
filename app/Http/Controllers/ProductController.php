@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\offerteproducts;
+use App\Models\offertes;
 use App\Models\products;
 use App\Models\productCategories;
 use Illuminate\Http\Request;
@@ -19,7 +21,9 @@ class ProductController extends Controller
     public function gethomeproduct()
     {
         $categories = productCategories::all();
+
         $products = products::all()->where('category_id', '!=', '3');
+        
         return view('product', compact('products','categories'));
     }
 
@@ -36,6 +40,7 @@ class ProductController extends Controller
             'price' => 'required',
             'installprice' => 'required',
             'brand' => 'required',
+            'amount' => 'required',
             'description' => 'required',
             'image' => 'required|mimes:jpg,png,jpeg|max:5048'
         ]);
@@ -50,6 +55,7 @@ class ProductController extends Controller
             'price' => $request->input('price'),
             'install_price' => $request->input('installprice'),
             'brand' => $request->input('brand'),
+            'amount' => $request->input('amount'),
             'description' => $request->input('description'),
             'category_id' => $request->input('selcategories'),
             'image_path' => $newImageName,
@@ -69,6 +75,7 @@ class ProductController extends Controller
         $products = products::all()->where('id', $id)->first();
         return view('product.show', ['products' => $products]);
     }
+
     public function shows()
     {
         $url = URL::current();
@@ -76,7 +83,60 @@ class ProductController extends Controller
         $id = $parts[count($parts) - 1];
 
         $products = products::all()->where('id', $id)->first();
-        return view('product.shows', ['products' => $products]);
+        $allproducts = products::all();
+
+        return view('product.shows', compact('products','allproducts'));
+    }
+
+    public function storeofferte(Request $request)
+    {
+
+        $request->validate([
+            'naam' => 'required',
+            'achternaam' => 'required',
+            'bedrijfnaam' => 'required',
+            'email' => 'required',
+            'land' => 'required',
+            'telefoonnummer' => 'required',
+            'stad' => 'required',
+            'straat' => 'required',
+            'huisnummer' => 'required',
+        ]);
+
+        $request->validate([
+            'product_id' => 'required'
+        ]);
+
+        $offertes =offertes::create([
+            'naam' => $request->input('naam'),
+            'achternaam' => $request->input('achternaam'),
+            'bedrijfnaam' => $request->input('bedrijfnaam'),
+            'email' => $request->input('email'),
+            'land' => $request->input('land'),
+            'telefoonnummer' => $request->input('telefoonnummer'),
+            'stad' => $request->input('stad'),
+            'straat' => $request->input('straat'),
+            'huisnummer' => $request->input('huisnummer'),
+            'check' => 0,
+            
+        ]);
+
+        $productID = $request->input('product_id');
+
+        foreach($productID as $product_id){
+            
+            $products = products::all()->where('id', $product_id)->first();
+
+            $productID[] = offerteproducts::create([
+                'offerte_id' => $offertes->id,
+                'product_id' => $product_id,
+                'product_name' => $products->name,
+                'product_price' => $products->price,
+            ]);
+
+        }
+
+        return redirect('/product');
     }
 
     public function getedit()
@@ -99,6 +159,7 @@ class ProductController extends Controller
             'description' => 'required',
             'price' => 'required',
             'brand' => 'required',
+            'amount' => 'required',
         ]);
 
             $url = URL::previous();
@@ -112,6 +173,7 @@ class ProductController extends Controller
             $products->install_price = $request->input('installprice');
             $products->price = $request->input('price');
             $products->brand = $request->input('brand');
+            $products->amount = $request->input('amount');
             $products->save();
             return redirect('product/overzicht');
         

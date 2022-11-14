@@ -17,21 +17,13 @@ class factuurController extends Controller
         $invoices = invoices::with(['invoice_products'])->get();
         $invoice_products = invoiceProducts::all();
 
-        foreach($invoices as $invoice)
-        {
-            //dump($invoice->invoice_products);
-            $invoiceArr = array('invoice_id' => $invoice->id);
-            //dump($invoiceArr);
-        }
-
-
-        return view('factuur.list', compact('invoices', 'invoice_products', 'invoiceArr'));
+        return view('factuur.list', compact('invoices', 'invoice_products'));
     }
 
     public function getCreate()
     {
         $company = companies::all();
-        $products = products::all();
+        $products = products::all()->where('category_id', '!=', '3');
         return view('factuur.create',compact('company'),compact('products'));
     }
 

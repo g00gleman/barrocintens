@@ -51,7 +51,7 @@ public function getedit()
         $id = $parts[count($parts) - 1];
 
         $user = User::all()->where('id', $id)->first();
- 
+
 
         $userrollen = rollen::all()->where('user_id', $id)->first();
         if($userrollen == null){

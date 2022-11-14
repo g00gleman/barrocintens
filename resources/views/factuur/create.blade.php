@@ -14,7 +14,7 @@
                 </label>
                 <select name="company_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password">
                   @foreach($company as $companies)
-                    <option value="{{$companies->id}}">{{$companies->id}}  {{$companies->name}}</option>
+                    <option value="{{$companies->id}}">{{$companies->name}}</option>
                   @endforeach
                 </select>
               </div>
@@ -56,7 +56,7 @@
 
       $(document).on('click', '.addProduct', function(){
               count++;
-              var html = '<div class="flex flex-wrap-mx-3 mb-1"><div class="w-3/4 px-3"><select onchange="getval(this);" id="' +count+ '" name="product_id" class="product_id appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">@foreach($products as $Products)<option id="{{$Products->id}}" value="{{$Products->id}}">{{$Products->id}}  {{$Products->name}}</option>@endforeach</select></div><div class="w-1/4 px-3 amount"><input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" value="1" min="1" id="' +count+ '" name="1"></input></div></div>';
+              var html = '<div class="flex flex-wrap-mx-3 mb-1"><div class="w-3/4"><select onchange="getval(this);" id="' +count+ '" name="product_id[' +count+ ']" class="product_id appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">@foreach($products as $Products)<option id="{{$Products->id}}" value="{{$Products->id}}">{{$Products->name}}</option>@endforeach</select></div><div class="w-1/4 px-3 amount"><input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" value="1" min="1" id="' +count+ '" name="1"></input></div></div>';
               $(this).parent().append(html);
       }); 
 

@@ -4,7 +4,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </head>
 <body>
-    <div class="container mt-5 m-auto" style="max-width: 700px">
+    <div class="container mt-5" style="max-width: 700px">
+        <h2 class="h2 text-center mb-5 border-bottom pb-3">Calendar Barroc Intens</h2>
         <div id='full_calendar_events'></div>
     </div>
     {{-- Scripts --}}

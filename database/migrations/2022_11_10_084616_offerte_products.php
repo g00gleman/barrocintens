@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contract', function (Blueprint $table) {
+        Schema::create('offerteproducts', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('date');
-        });
+            $table->foreignId('offerte_id')->constrained();
+            $table->foreignId('product_id')->constrained(); 
+            $table->string('product_name'); 
+            $table->decimal('product_price'); 
+            $table->timestamps();
+        }); 
     }
 
     /**
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('offerteproducts');
     }
 };

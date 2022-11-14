@@ -1,3 +1,6 @@
+<style>
+
+</style>
 <!-- Modal -->
 <style>
 .modal {
@@ -82,72 +85,152 @@
     </div>
     @endif
 <div class="ml-40 mt-8 mr-40">
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name.." title="Type in a name">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Zoek voor naam.." title="Type in a name">
 </div>
 <table id="product">
-@foreach ($products as $post)
-<tr>
-  </tr>
+@if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
+  @foreach ($products as $post)
   <tr>
-    <td hidden>{{ $post->name }}</td>
-    <td hidden>{{ $post->brand }}</td>
-    <td>
-    <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
-        <div>
-            <img src="{{ asset('images/' . $post->image_path) }}" alt="">
-        </div>
-        <div>
-            <h2 class="text-gray-700 font-bold-roboto text-5xl pb-4">
-                {{ $post->name }}
-            </h2>
+    </tr>
+    <tr>
+      <td hidden>{{ $post->name }}</td>
+      <td hidden>{{ $post->brand }}</td>
+      <td>
+      <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
+          <div>
+              <img src="{{ asset('images/' . $post->image_path) }}" alt="">
+          </div>
+          <div>
+              <h2 class="text-gray-700 font-bold-roboto text-5xl pb-4">
+                  {{ $post->name }}
+              </h2>
 
-            <span class="text-gray-500">
-                Price: €<span class="font-bold roboto text-gray-800">{{ $post->price }}
-            </span>
-            <br>
-            <span class="text-gray-500">
-                Brand:<span class="font-bold roboto text-gray-800">{{ $post->brand }}
-            </span>
+              <span class="text-gray-500">
+                  Prijs: €<span class="font-bold roboto text-gray-800">{{ $post->price }}
+              </span>
+              <br>
+              <span class="text-gray-500">
+                  Merk:<span class="font-bold roboto text-gray-800">{{ $post->brand }}
+              </span>
+              <br>
+              <span class="text-gray-500">
+                  Hoeveelheid in magazijn:<span class="font-bold roboto text-gray-800">{{ $post->amount }}
+              </span>
+              @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
+              <a href="/product/voorraad/{{ $post->id }}" class="bg-black p-0.5 rounded-lg text-amber-400	" >. + .</a>
+              @endif
+              <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-roboto">
+                  {{ $post->description }}
+              </p>
+              
+              <a href="/product/show/{{ $post->id }}" class="uppercase bg-yellow-400 text-gray-100 text-lg font-extrabold-roboto py-4 px-8 rounded-3xl">
+                  Lees beschrijving
+              </a>
+              @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
 
-            <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-roboto">
-                {{ $post->description }}
-            </p>
+                  <span class="float-right">
+                      <a 
+                          href="/product/edit/{{ $post->id }}"
+                          class="text-gray-700 roboto hover:text-gray-900 pb-1 border-b-2">
+                          Edit
+                      </a>
+                  </span>
 
-            <a href="/product/show/{{ $post->id }}" class="uppercase bg-yellow-400 text-gray-100 text-lg font-extrabold-roboto py-4 px-8 rounded-3xl">
-                Read description
-            </a>
-            @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
+                  <span class="float-right">
+                      <form 
+                          action="/product/delete/{{ $post->id }}"
+                          method="POST">
+                          @csrf
+                          @method('delete')
 
-                <span class="float-right">
-                    <a 
-                        href="/product/edit/{{ $post->id }}"
-                        class="text-gray-700 italic hover:text-gray-900 pb-1 border-b-2">
-                        Edit
-                    </a>
-                </span>
+                          <button
+                              class="text-red-500 pr-3"
+                              type="submit">
+                              Delete
+                          </button>
+                      </form>
+                  </span>
+              @endif
+          </div>
+      </div>
+      </td>
+    </tr>   
+  @endforeach
+  </table>
+@else
+  @foreach ($products as $post)
+  @if($post->category_id == 3)
+    @else
+  <tr>
+    </tr>
+    <tr>
+      <td hidden>{{ $post->name }}</td>
+      <td hidden>{{ $post->brand }}</td>
+      <td>
+      <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
+          <div>
+              <img src="{{ asset('images/' . $post->image_path) }}" alt="">
+          </div>
+          <div>
+              <h2 class="text-gray-700 font-bold-roboto text-5xl pb-4">
+                  {{ $post->name }}
+              </h2>
 
-                <span class="float-right">
-                     <form 
-                        action="/product/delete/{{ $post->id }}"
-                        method="POST">
-                        @csrf
-                        @method('delete')
+              <span class="text-gray-500">
+                  Prijs: €<span class="font-bold roboto text-gray-800">{{ $post->price }}
+              </span>
+              <br>
+              <span class="text-gray-500">
+                  Merk:<span class="font-bold roboto text-gray-800">{{ $post->brand }}
+              </span>
+              <br>
+              <span class="text-gray-500">
+                  Hoeveelheid in magazijn:<span class="font-bold roboto text-gray-800">{{ $post->amount }}
+              </span>
+              @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
+              <a href="/product/voorraad/{{ $post->id }}" class="bg-black p-0.5 rounded-lg text-amber-400	" >. + .</a>
+              @endif
+              <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-roboto">
+                  {{ $post->description }}
+              </p>
+              
+              <a href="/product/show/{{ $post->id }}" class="uppercase bg-yellow-400 text-gray-100 text-lg font-extrabold-roboto py-4 px-8 rounded-3xl">
+                  Lees beschrijving
+              </a>
+              @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
 
-                        <button
-                            class="text-red-500 pr-3"
-                            type="submit">
-                            Delete
-                        </button>
+                  <span class="float-right">
+                      <a 
+                          href="/product/edit/{{ $post->id }}"
+                          class="text-gray-700 roboto hover:text-gray-900 pb-1 border-b-2">
+                          Edit
+                      </a>
+                  </span>
 
-                    </form>
-                </span>
-            @endif
-        </div>
-    </div>
-    </td>
-  </tr>    
-@endforeach
-</table>
+                  <span class="float-right">
+                      <form 
+                          action="/product/delete/{{ $post->id }}"
+                          method="POST">
+                          @csrf
+                          @method('delete')
+
+                          <button
+                              class="text-red-500 pr-3"
+                              type="submit">
+                              Delete
+                          </button>
+
+                      </form>
+                  </span>
+              @endif
+          </div>
+      </div>
+      </td>
+    </tr>   
+    @endif 
+  @endforeach
+  </table>
+@endif
 
 <body>
 

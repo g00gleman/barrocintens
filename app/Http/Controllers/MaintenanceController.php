@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\meldingSend;
 use App\Models\companies;
 use App\Models\maintenaceAppointments;
 use App\Models\werkbon;
@@ -26,7 +27,11 @@ class MaintenanceController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {        
+        
+
+
+
         $request->validate([
             'company_id' => 'required',
             'description' => 'required',
@@ -39,14 +44,15 @@ class MaintenanceController extends Controller
             'description' => $request->description ,
             'materials' => $request->materials ,
         ];
-        werkbon::create($data);
 
         $adminMail = ' barroc.intens@gmail.com';
 
         Mail::to($adminMail)
-            ->send($data);
+            ->send(new meldingSend($data));
 
-
+        werkbon::create($data);
+        
+        
         return redirect()->route('maintenance.MeldingOverzicht')->with('success','werkbon has been created successfully.');
     }
 }

@@ -26,10 +26,9 @@ class companies extends Model
     {
         return $this->hasMany(notes::class,'company_id');
     }
-
+    
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(notes::class,'company_id');
     }
-    
 }

@@ -110,13 +110,14 @@ function myFunction() {
 <table id="customers">
   <tr>
     <th>ID</th>
-    <th>Name</th>
-    <th>Username</th>
+    <th>Naam</th>
+    <th>Usernaam</th>
     <th>E-mail</th>
+    <th>Bedrijf</th>
     <th>Role</th>
-    <th>Made</th>
+    <th>Gemaakt</th>
     <th>Updated</th>
-    <th>Actions</th>
+    <th>Actie's</th>
   </tr>
 
   @foreach($user as $users)
@@ -130,6 +131,18 @@ function myFunction() {
     <td>{{$users->name}}</td>
     <td>{{$users->username}}</td>
     <td>{{$users->email}}</td>
+    <td>
+      @if($users->company_id != 0)       
+       @foreach($company as $company)
+            @if($users->company_id == $company->id)
+                {{$company->name}}
+            @endif
+        @endforeach
+      @else
+      Geen
+      @endif
+    </td>
+
     <td>  
       @foreach($userrollen as $rollen)
       @if($rollen->user_id == $users->id) 

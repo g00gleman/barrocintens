@@ -36,6 +36,14 @@
             name="email"
             placeholder="E-mail..."
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
+        Bedrijf:
+        <select class="mb-8" name="selcompany">
+            <option value="0">Geen</option>
+            @foreach($company as $companies)
+            <option value="{{ $companies->id }}">{{ $companies->name }}</option>
+            @endforeach
+        </select>
+        </br>
         <button    
             type="submit"
             class="uppercase mt-15 bg-yellow-400 text-gray-100 text-lg font-extrabold py-3 px-5 rounded-2xl">

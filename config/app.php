@@ -4,6 +4,16 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+    // 'providers' => [
+    //     //pdf
+    //     Barryvdh\DomPDF\ServiceProvider::class,
+    // ],
+
+    // 'aliases' => [
+    //     //pdf
+    //     'PDF' => Barryvdh\DomPDF\Facade::class,
+    // ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -213,5 +223,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+
+
 
 ];

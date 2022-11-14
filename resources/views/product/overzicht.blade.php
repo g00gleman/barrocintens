@@ -230,7 +230,8 @@
     @endif 
   @endforeach
   </table>
-@endif                                   
+@endif
+
 <body>
 
 <!-- The Modal -->

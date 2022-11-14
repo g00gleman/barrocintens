@@ -21,7 +21,8 @@ class ProductController extends Controller
     public function gethomeproduct()
     {
         $categories = productCategories::all();
-        $products = products::all();
+
+        $products = products::all()->where('category_id', '!=', '3');
         
         return view('product', compact('products','categories'));
     }

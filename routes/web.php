@@ -51,8 +51,12 @@ Route::middleware([
     Route::delete('/product_category/delete/{categoryid}', [ProductController::class, 'destroycategory'])->name('product_category.delete');
     // calander routes hier
 
-    Route::get('calendar', [CalenderController::class, 'index']);
+    Route::get('calendar', [CalenderController::class, 'index'])->name('calender');
     Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
+    Route::get('calendar/show/{id}', [CalenderController::class, 'show'])->name('calender.show');
+    Route::get('calendar/edit/{id}', [CalenderController::class, 'edit'])->name('calender.edit');
+    Route::post('calendar/store/{id}', [CalenderController::class, 'store'])->name('calender.store');
+    Route::get('calendar/destroy/{id}', [CalenderController::class, 'destroy'])->name('calender.destroy');
 
     // hier de routes voor user
     Route::get('/user/overzicht', [UserController::class, 'getuser'])->name('user.overzicht');

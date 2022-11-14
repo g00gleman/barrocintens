@@ -62,6 +62,11 @@
                         {{ __('Notes') }}
                     </x-nav-link>
                     @endif
+                    @if(session()->get('admin') == 1 || session()->get('maintenance') == 1|| session()->get('head_maintenance') == 1)
+                    <x-nav-link href="{{ route('calender') }}" :active="request()->routeIs('calender')">
+                        {{ __('Calender') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 

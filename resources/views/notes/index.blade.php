@@ -76,7 +76,7 @@
         </h2>
     </x-slot>
     <div class="pt-15 mt-8 w-4/5 m-auto">
-            <a href="/company/create" class="bg-yellow-400 uppercase text-gray-100 text-xs font-roboto py-3 px-5 rounded-3xl ">
+            <a href="/note/create" class="bg-yellow-400 uppercase text-gray-100 text-xs font-roboto py-3 px-5 rounded-3xl ">
                 Create Note
             </a>
     </div>

@@ -51,7 +51,7 @@
                         @csrf
                         @method('delete')
 
-                        <button
+                        <button style="margin-top: 8px;"
                             class="text-red-500 pr-3"
                             type="submit">
                             Delete

@@ -69,7 +69,6 @@
   color: white;
 }
 </style>
-
 <script>
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
@@ -95,52 +94,50 @@ function myFunction() {
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-roboto text-xl text-gray-800 leading-tight">
-        Bedrijf overzicht
+        voorraad overzicht
         </h2>
     </x-slot>
-    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
-    <div class="pt-15 mt-8 w-4/5 m-auto">
-            <a href="/company/create" class="bg-yellow-400 uppercase text-gray-100 text-xs font-roboto py-3 px-5 rounded-3xl ">
-                Create Bedrijf
-            </a>
-    </div>
-    @endif
 <div class="ml-40 mt-8 mr-40">
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Zoek voor naam.." title="Type in a name">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name.." title="Type in a name">
 </div>
 
 <table id="Bedrijf">
   <tr>
     <th>ID</th>
-    <th>Bedrijf naam</th>
-    <th>Telefoonnummer</th>
-    <th>Straat</th>
-    <th>Huisnummer</th>
-    <th>Stad</th>
-    <th>Landcode</th>
-    <th>BkrCheckedAt</th>
+    <th>User</th>
+    <th>Product</th>
+    <th>Hoeveelheid</th>
+    <th>Check</th>
     <th>Actie's</th>
   </tr>
 
-  @foreach($company as $companies)
+  @foreach($voorraad as $voorraad)
   <form 
-        action="/company/delete/{{ $companies->id }}"
+        action="/voorraad/delete/{{ $voorraad->id }}"
         method="POST">
         @csrf
         @method('delete')
   <tr>
-    <td>{{$companies->id}}</td>
-    <td>{{$companies->name}}</td>
-    <td>{{$companies->phone}}</td>
-    <td>{{$companies->street}}</td>
-    <td>{{$companies->HouseNumber}}</td>
-    <td>{{$companies->city}}</td>
-    <td>{{$companies->CountryCode}}</td>
-    <td>{{$companies->BkrCheckedAt}}</td>
-    <td><a href="/company/edit/{{ $companies->id }}" class="button">Wijzigen</a>
-    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
-    <button type="submit" class="button1">Delete</button>
-    @endif  
+    <td>{{$voorraad->id}}</td>
+    <td>{{$voorraad->user->name}}</td>
+
+    <td>
+        @foreach($product as $product)
+            @if($voorraad->product_id == $product->id)
+                {{$product->name}}
+            @endif
+        @endforeach
+    </td>
+    <td>{{$voorraad->amount}}</td>
+    @if($voorraad->check == 1)
+    <td>✔️</td>
+    @else
+    <td>❌</td>
+    @endif
+
+    
+    <td><a href="/voorraad/edit/{{ $voorraad->id }}" class="button">Wijzigen</a>
+    <button type="submit" class="button1">Delete</button> 
     </td>
   </tr>
   </form>

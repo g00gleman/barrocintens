@@ -17,21 +17,13 @@ class factuurController extends Controller
         $invoices = invoices::with(['invoice_products'])->get();
         $invoice_products = invoiceProducts::all();
 
-        foreach($invoices as $invoice)
-        {
-            //dump($invoice->invoice_products);
-            $invoiceArr = array('invoice_id' => $invoice->id);
-            //dump($invoiceArr);
-        }
-
-
-        return view('factuur.list', compact('invoices', 'invoice_products', 'invoiceArr'));
+        return view('factuur.list', compact('invoices', 'invoice_products'));
     }
 
     public function getCreate()
     {
         $company = companies::all();
-        $products = products::all();
+        $products = products::all()->where('category_id', '!=', '3');
         return view('factuur.create',compact('company'),compact('products'));
     }
 
@@ -92,12 +84,9 @@ class factuurController extends Controller
     public function doDownloadFactuur($id)
     {
         $invoice = invoices::find($id);
-        $invoice_products = invoiceProducts::all()->where('invoice_id', $id)->first();
+        $invoice_products = invoiceProducts::all()->where('invoice_id', $id);
 
-        $subtotaal = bcmul($invoice_products->amount, $invoice_products->product_price, 2);
-
-
-        $pdf = Pdf::loadView('factuur.pdf', compact('invoice', 'invoice_products', 'subtotaal'));
+        $pdf = Pdf::loadView('factuur.pdf', compact('invoice', 'invoice_products',));
         
         return $pdf->download('factuur.pdf');
 

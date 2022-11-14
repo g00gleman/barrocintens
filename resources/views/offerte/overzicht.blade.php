@@ -1,5 +1,5 @@
 <style>
-.button {
+    .button {
   background-color: #32CD32;
   border: none;
   border-radius: 8px;
@@ -16,6 +16,24 @@
 }
 
 .button:hover {opacity: 1}
+
+.button2 {
+  background-color: #005eff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button2:hover {opacity: 1}
 
 .button1 {
   background-color: #DC143C !important;
@@ -34,8 +52,7 @@
 }
 
 .button1:hover {opacity: 1}
-
-#Bedrijf {
+#offerte {
   font-family: roboto;
   border-collapse: collapse;
   width: 79%;
@@ -44,7 +61,7 @@
   margin-top: 20px;
 }
 
-#Bedrijf td, #Bedrijf th {
+#offerte td, #offerte th {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -56,12 +73,12 @@
   margin-top: 40px;
 }
 
-#Bedrijf tr:nth-child(even){background-color: #f2f2f2;}
+#offerte tr:nth-child(even){background-color: #f2f2f2;}
 
 #customers tr:hover {background-color: #ddd;}
 
 
-#Bedrijf th {
+#offerte th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -75,7 +92,7 @@ function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
-  table = document.getElementById("Bedrijf");
+  table = document.getElementById("offerte");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[1];
@@ -95,52 +112,51 @@ function myFunction() {
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-roboto text-xl text-gray-800 leading-tight">
-        Bedrijf overzicht
+        Offerte overzicht
         </h2>
     </x-slot>
-    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
-    <div class="pt-15 mt-8 w-4/5 m-auto">
-            <a href="/company/create" class="bg-yellow-400 uppercase text-gray-100 text-xs font-roboto py-3 px-5 rounded-3xl ">
-                Create Bedrijf
-            </a>
-    </div>
-    @endif
 <div class="ml-40 mt-8 mr-40">
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Zoek voor naam.." title="Type in a name">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="zoek voor naam.." title="Type in a name">
 </div>
 
-<table id="Bedrijf">
+<table id="offerte">
   <tr>
     <th>ID</th>
-    <th>Bedrijf naam</th>
-    <th>Telefoonnummer</th>
-    <th>Straat</th>
-    <th>Huisnummer</th>
-    <th>Stad</th>
-    <th>Landcode</th>
-    <th>BkrCheckedAt</th>
+    <th>Naam</th>
+    <th>Achternaam</th>
+    <th>Bedrijfnaam</th>
+    <th>Producten</th>
+    <th>Gechecked</th>
     <th>Actie's</th>
   </tr>
 
-  @foreach($company as $companies)
+  @foreach($offerte as $offerte)
   <form 
-        action="/company/delete/{{ $companies->id }}"
+        action="/offerte/delete/{{ $offerte->id }}"
         method="POST">
         @csrf
         @method('delete')
   <tr>
-    <td>{{$companies->id}}</td>
-    <td>{{$companies->name}}</td>
-    <td>{{$companies->phone}}</td>
-    <td>{{$companies->street}}</td>
-    <td>{{$companies->HouseNumber}}</td>
-    <td>{{$companies->city}}</td>
-    <td>{{$companies->CountryCode}}</td>
-    <td>{{$companies->BkrCheckedAt}}</td>
-    <td><a href="/company/edit/{{ $companies->id }}" class="button">Wijzigen</a>
-    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
+    <td>{{$offerte->id}}</td>
+    <td>{{$offerte->naam}}</td>
+    <td>{{$offerte->achternaam}}</td>
+    <td>{{$offerte->bedrijfnaam}}</td>
+    <td>
+        @foreach($offerteproduct as $offerteproduct)
+            @if($offerte->id == $offerteproduct->offerte_id)
+                {{$offerteproduct->product_name}},
+            @endif
+        @endforeach
+    </td>
+
+    @if($offerte->check == 1)
+    <td>✔️</td>
+    @else
+    <td>❌</td>
+    @endif
+    <td><a href="/offerte/edit/{{ $offerte->id }}" class="button">Wijzigen</a>
     <button type="submit" class="button1">Delete</button>
-    @endif  
+    <a href="/offerte/show/{{ $offerte->id }}" class="button2">Meer</a>
     </td>
   </tr>
   </form>

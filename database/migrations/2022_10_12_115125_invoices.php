@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('contract_id')->constrained('contract'); 
+            $table->foreignId('leases_id')->constrained(); 
             // $table->foreignId('user_id')->constrained(); 
             $table->foreignId('company_id')->constrained();
             $table->string('company_name')->constrained();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('company_house_number')->constrained();
             $table->string('company_city')->constrained(); 
             $table->integer('company_country_code')->constrained();
-            // $table->integer('total_price')->constrained();
+            $table->decimal('total_price')->nullable();
             $table->dateTime('paid_at')->nullable();
             $table->dateTime('updated_at');
             $table->dateTime('created_at');

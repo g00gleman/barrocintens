@@ -8,14 +8,29 @@ use Illuminate\Database\Eloquent\Model;
 class products extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','description','image_path','price','brand','category_id', 'install_price'];
+    protected $guarded = [];
 
     public function product_catogorie()
     {
-        return  $this->belongsTo(ProductCatogorie::class);
+        return  $this->belongsTo(productCategories::class);
     }
     public function invoice_products()
     {
         return $this->hasMany(InvoiceProducts::class,'product_id');
+    }
+
+    public function voorraad()
+    {
+        return $this->hasMany(voorraad::class,'product_id');
+    }
+
+    public function leases_products()
+    {
+        return $this->hasMany(leasesProducts::class,'product_id');
+    }
+
+    public function offerte_products()
+    {
+        return $this->hasMany(offerteproducts::class,'product_id');
     }
 }

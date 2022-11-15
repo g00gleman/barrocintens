@@ -4,17 +4,17 @@
 <!-- Modal -->
 <style>
 .modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
-  padding-top: 100px; 
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
 /* Modal Content */
@@ -33,7 +33,7 @@
 }
 
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
+  from {top:-300px; opacity:0}
   to {top:0; opacity:1}
 }
 
@@ -117,19 +117,19 @@
                   Hoeveelheid in magazijn:<span class="font-bold roboto text-gray-800">{{ $post->amount }}
               </span>
               @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
-              <a href="/product/voorraad/{{ $post->id }}" class="bg-black p-0.5 rounded-lg text-amber-400	" >. + .</a>
+              <a href="/product/voorraad/{{ $post->id }}" class="bg-black px-3 py-1.5 rounded-lg text-amber-400	" > + </a>
               @endif
               <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-roboto">
                   {{ $post->description }}
               </p>
-              
+
               <a href="/product/show/{{ $post->id }}" class="uppercase bg-yellow-400 text-gray-100 text-lg font-extrabold-roboto py-4 px-8 rounded-3xl">
                   Lees beschrijving
               </a>
               @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
 
                   <span class="float-right">
-                      <a 
+                      <a
                           href="/product/edit/{{ $post->id }}"
                           class="text-gray-700 roboto hover:text-gray-900 pb-1 border-b-2">
                           Edit
@@ -137,7 +137,7 @@
                   </span>
 
                   <span class="float-right">
-                      <form 
+                      <form
                           action="/product/delete/{{ $post->id }}"
                           method="POST">
                           @csrf
@@ -154,7 +154,7 @@
           </div>
       </div>
       </td>
-    </tr>   
+    </tr>
   @endforeach
   </table>
 @else
@@ -193,14 +193,14 @@
               <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-roboto">
                   {{ $post->description }}
               </p>
-              
+
               <a href="/product/show/{{ $post->id }}" class="uppercase bg-yellow-400 text-gray-100 text-lg font-extrabold-roboto py-4 px-8 rounded-3xl">
                   Lees beschrijving
               </a>
               @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
 
                   <span class="float-right">
-                      <a 
+                      <a
                           href="/product/edit/{{ $post->id }}"
                           class="text-gray-700 roboto hover:text-gray-900 pb-1 border-b-2">
                           Edit
@@ -208,7 +208,7 @@
                   </span>
 
                   <span class="float-right">
-                      <form 
+                      <form
                           action="/product/delete/{{ $post->id }}"
                           method="POST">
                           @csrf
@@ -226,8 +226,8 @@
           </div>
       </div>
       </td>
-    </tr>   
-    @endif 
+    </tr>
+    @endif
   @endforeach
   </table>
 @endif
@@ -244,15 +244,15 @@
       <h2>Overzicht category</h2>
     </div>
     <div class="modal-body">
-    <form 
-    action="{{ route('product.overzicht') }}" 
+    <form
+    action="{{ route('product.overzicht') }}"
     method="POST">
     @csrf
-    <input 
+    <input
         name="name"
         placeholder="Name..."
         class="bg-transparent mb-8 block border-b-2 w-full h-10 text-3xl outline-none"></input>
-        <button    
+        <button
             type="submit"
             class="uppercase  bg-yellow-400 text-gray-100 text-lg font-extrabold py-2 px-3 rounded-2xl">
             Submit
@@ -260,7 +260,7 @@
     </form>
         @foreach ($categories as $category)
             <h1 >
-                <form 
+                <form
                     action="/product_category/delete/{{ $category->id }}"
                     method="POST">
                     @csrf
@@ -272,7 +272,7 @@
                         Delete
                     </button>
                 </form>
-            </h1>      
+            </h1>
         @endforeach
     </div>
   </div>
@@ -289,7 +289,7 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
 }
@@ -320,7 +320,7 @@ function myFunction() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
   }
 }
 </script>

@@ -7,7 +7,7 @@
                 <?php
                     $baseurl = env('APP_URL');
                 ?>
-                <a href="{{$baseurl}}" class="flex items-center">
+                <a href="http://barrocintens.test/" class="flex items-center">
                     <img src="/fotos/logo/Logo5_groot.png" class="mr-3 h-6 sm:h-9" alt="Barrocintens logo">
                     <span class="self-center text-xl font-semibold whitespace-nowrap">Barrocintens</span>
                 </a>

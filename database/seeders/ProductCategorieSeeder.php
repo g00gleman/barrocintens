@@ -41,7 +41,7 @@ class ProductCategorieSeeder extends Seeder
             [
                 'id' => "3",
                 'name' => "onderdelen",
-                'is_employee_only' => "0",
+                'is_employee_only' => "1",
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

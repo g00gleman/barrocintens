@@ -122,9 +122,9 @@ function myFunction() {
     <td>{{$voorraad->user->name}}</td>
 
     <td>
-        @foreach($product as $product)
-            @if($voorraad->product_id == $product->id)
-                {{$product->name}}
+        @foreach($product as $products)
+            @if($voorraad->product_id == $products->id)
+                {{$products->name}}
             @endif
         @endforeach
     </td>

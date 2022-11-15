@@ -122,7 +122,7 @@ function myFunction() {
 <table id="offerte">
   <tr>
     <th>ID</th>
-    <th>Naam</th>
+    <th>Voornaam</th>
     <th>Achternaam</th>
     <th>Bedrijfnaam</th>
     <th>Producten</th>
@@ -142,9 +142,9 @@ function myFunction() {
     <td>{{$offerte->achternaam}}</td>
     <td>{{$offerte->bedrijfnaam}}</td>
     <td>
-        @foreach($offerteproduct as $offerteproduct)
-            @if($offerte->id == $offerteproduct->offerte_id)
-                {{$offerteproduct->product_name}},
+        @foreach($offerteproduct as $offerteproducts)
+            @if($offerte->id == $offerteproducts->offerte_id)
+                {{$offerteproducts->product_name}},
             @endif
         @endforeach
     </td>

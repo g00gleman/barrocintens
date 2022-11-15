@@ -133,9 +133,9 @@ function myFunction() {
     <td>{{$users->email}}</td>
     <td>
       @if($users->company_id != 0)       
-       @foreach($company as $company)
-            @if($users->company_id == $company->id)
-                {{$company->name}}
+       @foreach($company as $companies)
+            @if($users->company_id == $companies->id)
+                {{$companies->name}}
             @endif
         @endforeach
       @else

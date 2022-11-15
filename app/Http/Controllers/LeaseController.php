@@ -35,7 +35,7 @@ class LeaseController extends Controller
     {
         $company = companies::all();
         $lease = leases::all();
-        $products = products::all();
+        $products = products::all()->where('category_id','!=','3');
 
         return view('leasecontracten.create', compact('lease','company','products'));
     }

@@ -83,7 +83,10 @@ class ProductController extends Controller
         $id = $parts[count($parts) - 1];
 
         $products = products::all()->where('id', $id)->first();
-        $allproducts = products::all();
+        // $allcategories = productCategories::all()->where('is_employee_only', 0)->first('id');
+
+        $allproducts = products::all()->where('category_id','!=','3');
+    
 
         return view('product.shows', compact('products','allproducts'));
     }
@@ -95,9 +98,9 @@ class ProductController extends Controller
             'naam' => 'required',
             'achternaam' => 'required',
             'bedrijfnaam' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:offertes',
             'land' => 'required',
-            'telefoonnummer' => 'required',
+            'telefoonnummer' => 'required|unique:offertes',
             'stad' => 'required',
             'straat' => 'required',
             'huisnummer' => 'required',

@@ -5,14 +5,6 @@
         </h2>
         </x-slot>
         <section class="text-gray-600 body-font overflow-hidden">
-        
-        <div>
-            <div class="pt-15 mt-8 w-4/5 m-auto">
-                <a href="/factuur/create" class="bg-blue-400 uppercase text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl ">
-                    Factuur aanmaken
-                </a>
-            </div>
-        </div>
 
         @foreach ($invoices as $AllInvoices)
 

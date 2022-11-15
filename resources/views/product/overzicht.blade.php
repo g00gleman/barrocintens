@@ -117,7 +117,7 @@
                   Hoeveelheid in magazijn:<span class="font-bold roboto text-gray-800">{{ $post->amount }}
               </span>
               @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
-              <a href="/product/voorraad/{{ $post->id }}" class="bg-black px-2 py-1.5 rounded-lg text-amber-400	" > + </a>
+              <a href="/product/voorraad/{{ $post->id }}" class="bg-black px-3 py-1.5 rounded-lg text-amber-400	" > + </a>
               @endif
               <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-roboto">
                   {{ $post->description }}

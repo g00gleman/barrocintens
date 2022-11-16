@@ -7,7 +7,7 @@
                 <?php
                     $baseurl = env('APP_URL');
                 ?>
-                <a href="{{$baseurl}}" class="flex items-center">
+                <a href="http://barrocintens.test/" class="flex items-center">
                     <img src="/fotos/logo/Logo5_groot.png" class="mr-3 h-6 sm:h-9" alt="Barrocintens logo">
                     <span class="self-center text-xl font-semibold whitespace-nowrap">Barrocintens</span>
                 </a>
@@ -17,7 +17,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    @if(session()->get('admin') == 1 || session()->get('klant') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
+                    @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
                     <x-nav-link href="{{ route('product.overzicht') }}" :active="request()->routeIs('product.overzicht')">
                         {{ __('Products') }}
                     </x-nav-link>
@@ -52,7 +52,7 @@
                         {{ __('Leasecontracten') }}
                     </x-nav-link>
                     @endif
-                    @if(session()->get('admin') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)
+                    @if(session()->get('admin') == 1 || session()->get('klant') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)
                     <x-nav-link href="{{ route('factuur.list') }}" :active="request()->routeIs('factuur.list')">
                         {{ __('Factuur') }}
                     </x-nav-link>

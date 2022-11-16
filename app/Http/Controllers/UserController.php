@@ -42,6 +42,13 @@ public function store(Request $request)
         'company_id' => $request->input('selcompany'),
         'password' => Hash::make('123welkom'),
     ]);
+
+    $rollen = rollen::create([
+        'user_id' => $user->id,
+        'klant' => 1,
+    ]);
+
+    
     return redirect('/user/overzicht');
         
 }

@@ -41,6 +41,7 @@ class JetstreamServiceProvider extends ServiceProvider
                 Hash::check($request->password, $user->password)) {
                     
                 $userrollen = rollen::all()->where('user_id', $user->id)->first();
+                session()->put('user_id', $user->id);
                 session()->put('admin', $userrollen->admin);
                 session()->put('head_finance', $userrollen->head_finance);
                 session()->put('finance', $userrollen->finance);

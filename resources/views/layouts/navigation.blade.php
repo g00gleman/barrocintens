@@ -52,7 +52,7 @@
                         {{ __('Leasecontracten') }}
                     </x-nav-link>
                     @endif
-                    @if(session()->get('admin') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)
+                    @if(session()->get('admin') == 1 || session()->get('klant') == 1 || session()->get('finance') == 1|| session()->get('head_finance') == 1)
                     <x-nav-link href="{{ route('factuur.list') }}" :active="request()->routeIs('factuur.list')">
                         {{ __('Factuur') }}
                     </x-nav-link>

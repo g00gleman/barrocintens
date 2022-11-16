@@ -9,7 +9,7 @@ class companies extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','phone','street','HouseNumber','city','CountryCode','BkrCheckedAt'];
+    protected $fillable = ['name','phone','street','HouseNumber','city','CountryCode','check','BkrCheckedAt'];
 
 
     public function custom_voices()

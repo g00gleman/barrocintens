@@ -25,6 +25,7 @@ class ProductSeeder extends Seeder
             'amount' => "2150",
             'install_price' => "289",
             'category_id' => "1",
+            'is_employee_only' => 0,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -36,6 +37,7 @@ class ProductSeeder extends Seeder
             'amount' => "3500",
             'install_price' => "289",
             'category_id' => "1",
+            'is_employee_only' => 0,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -47,6 +49,7 @@ class ProductSeeder extends Seeder
             'amount' => "6000",
             'install_price' => "375",
             'category_id' => "1",
+            'is_employee_only' => 0,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -60,6 +63,7 @@ class ProductSeeder extends Seeder
             'amount' => "11160",
             'install_price' => "0",
             'category_id' => "2",
+            'is_employee_only' => 0,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -71,6 +75,7 @@ class ProductSeeder extends Seeder
             'amount' => "9780",
             'install_price' => "0",
             'category_id' => "2",
+            'is_employee_only' => 0,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -82,6 +87,7 @@ class ProductSeeder extends Seeder
             'amount' => "0",
             'install_price' => "0",
             'category_id' => "2",
+            'is_employee_only' => 0,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -93,6 +99,7 @@ class ProductSeeder extends Seeder
             'price' => "27.80",
             'install_price' => "0",
             'category_id' => "2",
+            'is_employee_only' => 0,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -104,6 +111,7 @@ class ProductSeeder extends Seeder
             'price' => "0.39",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -115,6 +123,7 @@ class ProductSeeder extends Seeder
             'price' => "0.45",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -126,6 +135,7 @@ class ProductSeeder extends Seeder
             'price' => "4.45",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -137,6 +147,7 @@ class ProductSeeder extends Seeder
             'price' => "68.69",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -148,6 +159,7 @@ class ProductSeeder extends Seeder
             'price' => "4.00",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -159,6 +171,7 @@ class ProductSeeder extends Seeder
             'price' => "299.45",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -170,6 +183,7 @@ class ProductSeeder extends Seeder
             'price' => "89.99",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -181,6 +195,7 @@ class ProductSeeder extends Seeder
             'price' => "122.43",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -192,6 +207,7 @@ class ProductSeeder extends Seeder
             'price' => "89.99",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -203,6 +219,7 @@ class ProductSeeder extends Seeder
             'price' => "5.45",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -214,6 +231,7 @@ class ProductSeeder extends Seeder
             'price' => "5.25",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -225,6 +243,7 @@ class ProductSeeder extends Seeder
             'price' => "119.20",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -236,6 +255,7 @@ class ProductSeeder extends Seeder
             'price' => "28.80",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -247,6 +267,7 @@ class ProductSeeder extends Seeder
             'price' => "3.45",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -258,6 +279,7 @@ class ProductSeeder extends Seeder
             'price' => "8.45",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
 
@@ -269,6 +291,7 @@ class ProductSeeder extends Seeder
             'price' => "21.70",
             'install_price' => "0",
             'category_id' => "3",
+            'is_employee_only' => 1,
             'created_at' => now(),
             'updated_at' => now(),],
         ];

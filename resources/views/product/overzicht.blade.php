@@ -65,12 +65,14 @@
 .modal-body {padding: 2px 14px;}
 
 </style>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-roboto text-xl text-gray-800 leading-tight">
             Product overzicht
         </h2>
     </x-slot>
+    @include('flash-message')
     <div>
     @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
     <div>

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\invoiceProducts;
+use App\Models\invoices;
+use App\Models\leases;
+use App\Models\leasesProducts;
 use App\Models\offerteproducts;
 use App\Models\offertes;
 use App\Models\products;
@@ -49,6 +53,8 @@ class ProductController extends Controller
 
         $request->image->move(public_path('images'), $newImageName);
 
+        $category = productCategories::all()->where('id',$request->input('selcategories'))->first();
+
 
         products::create([
             'name' => $request->input('name'),
@@ -58,6 +64,7 @@ class ProductController extends Controller
             'amount' => $request->input('amount'),
             'description' => $request->input('description'),
             'category_id' => $request->input('selcategories'),
+            'is_employee_only' => $category->is_employee_only,
             'image_path' => $newImageName,
             
         ]);
@@ -85,7 +92,7 @@ class ProductController extends Controller
         $products = products::all()->where('id', $id)->first();
         // $allcategories = productCategories::all()->where('is_employee_only', 0)->first('id');
 
-        $allproducts = products::all()->where('category_id','!=','3');
+        $allproducts = products::all()->where('is_employee_only','!=','1');
     
 
         return view('product.shows', compact('products','allproducts'));
@@ -168,7 +175,7 @@ class ProductController extends Controller
             $url = URL::previous();
             $parts = Explode('/', $url);
             $id = $parts[count($parts) - 1];
-            
+
             $products = products::all()->where('id', $id)->first();
 
             $products->name = $request->input('name');
@@ -184,10 +191,21 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
+        $factuurproduct =  invoiceProducts::all();
         $post = products::where('id', $id);
-        $post->delete();
 
-        return redirect('product/overzicht');
+        foreach($factuurproduct as $products)
+        {
+            if($products->product_id == $id){
+                return redirect('product/overzicht')->with('warning','U mag niet de product verwijderen.');;
+            }else{
+                $post->delete();
+                return redirect('product/overzicht');
+            }
+        }
+        
+
+
     }
 
     public function postcategory(Request $request)

@@ -9,7 +9,16 @@
             Create leasecontract
         </a>
     </div>
+<div class="ml-40 mt-8 mr-40">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Zoek voor bedrijf.." title="Type in a name">
+</div>
+<table id="lease">
     @foreach($leases as $leases)
+    <tr>
+    </tr>
+    <tr>
+      <td hidden>{{ $leases->company->name }}</td>
+      <td>
     <div class="container px-5 py-12 mx-auto">
             <div class="-my-8 divide-y-2 divide-gray-100">
             <div class="py-8 flex flex-wrap md:flex-nowrap">
@@ -63,5 +72,28 @@
             </div>
             </div>
         </div>
-        @endforeach
+        </td>
+    </tr>
+  @endforeach
+</table>
 </x-app-layout>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("lease");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>

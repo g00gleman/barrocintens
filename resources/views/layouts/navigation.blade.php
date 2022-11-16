@@ -17,7 +17,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    @if(session()->get('admin') == 1 || session()->get('klant') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
+                    @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
                     <x-nav-link href="{{ route('product.overzicht') }}" :active="request()->routeIs('product.overzicht')">
                         {{ __('Products') }}
                     </x-nav-link>

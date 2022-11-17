@@ -24,10 +24,10 @@ class LeaseController extends Controller
         foreach($leases as $lease)
         {
             $begindate =$lease->created_at->format('d M Y');
-            
+
             $finalDate = $lease->created_at->addDays($date->duur)->format('d M Y');
         }
-        
+
         return view('leasecontracten.overzicht', compact('leases','company','finalDate','begindate'));
     }
 
@@ -39,7 +39,7 @@ class LeaseController extends Controller
 
         return view('leasecontracten.create', compact('lease','company','products'));
     }
-    
+
     public function create(Request $request)
     {
         $request->validate([
@@ -51,33 +51,28 @@ class LeaseController extends Controller
         $request->validate([
             'product_id' => 'required'
         ]);
-        
+
         $leases =leases::create([
             'company_id' => $request->input('selcompany'),
             'weken' => $request->input('weken'),
             'dagen' => $request->input('dagen'),
             'duur' => $request->input('duur'),
-            
+
         ]);
 
         $company_id = $request->input('selcompany');
-        $company = companies::all()->where('id', $company_id)->first();   
+        $company = companies::all()->where('id', $company_id)->first();
 
         $invoices =invoices::create([
             'leases_id' => $leases->id,
             'company_id' => $company_id,
-            'company_name' => $company->name,
-            'company_street' => $company->street,
-            'company_house_number' => $company->HouseNumber,
-            'company_city' => $company->city,
-            'company_country_code' => $company->CountryCode,
         ]);
         $productID = $request->input('product_id');
 
         $totaalprice = 0;
 
         foreach($productID as $product_id){
-            
+
             $products = products::all()->where('id', $product_id)->first();
             $amount = $request->input($product_id);
 
@@ -97,8 +92,6 @@ class LeaseController extends Controller
             $productID[] = invoiceProducts::create([
                 'invoice_id' => $invoices->id,
                 'product_id' => $product_id,
-                'product_name' => $products->name,
-                'product_price' => $products->price,
                 'amount' => $amount,
 
             ]);
@@ -122,7 +115,7 @@ class LeaseController extends Controller
 
     public function destroy($id)
     {
-        
+
         $lease = leases::where('id', $id);
         $invoices = invoices::where('leases_id', $id)->first();
         $lease_product = leasesProducts::where('leases_id', $id);
@@ -159,7 +152,7 @@ class LeaseController extends Controller
             return view('leasecontracten.edit', ['lease' => $lease]);
     }
 
-    
+
     public function edit(Request $request)
     {
         $request->validate([
@@ -179,6 +172,6 @@ class LeaseController extends Controller
             $lease->duur = $request->input('duur');
             $lease->save();
             return redirect('leasecontracten/overzicht');
-        
+
     }
 }

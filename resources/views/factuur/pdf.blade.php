@@ -32,7 +32,7 @@
         @media screen and (max-width: 767px) {
             .tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}
         }
-        
+
     </style>
 
   </head>
@@ -42,10 +42,10 @@
         <tbody>
             <tr>
                 <td width="302">
-                <p><strong>{{$invoice->company_name}}</strong></p>
-                <p>{{ $invoice->company_street }} {{ $invoice->company_house_number }}</p>
-                <p>{{ $invoice->company_city }}</p>
-                <p>{{ $invoice->company_country_code }}</p>
+                <p><strong>{{$invoice->company->name}}</strong></p>
+                <p>{{ $invoice->company->street }} {{ $invoice->company->HouseNumber}}</p>
+                <p>{{ $invoice->company->city }}</p>
+                <p>{{ $invoice->company->CountryCode }}</p>
                 <p>&nbsp;</p>
                 <p><em>Periode</em>:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{{ $invoice->created_at }}</p>
                 <p>Klantnr.:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(klantnmbr)</p>
@@ -79,7 +79,7 @@
                 $price = '0';
 
             foreach($invoice_products as $products){
-                
+
                 $subtotaal = bcmul($products->amount, $products->product_price, 2);
 
                 $price+= $subtotaal;
@@ -93,7 +93,7 @@
                 <td class="tg-0lax">&euro;{{ $products->product_price }}</td>
                 <td class="tg-0lax">&euro;{{ $subtotaal }}</td>
             </tr>
-            <?php 
+            <?php
             } ?>
 
             </thead>

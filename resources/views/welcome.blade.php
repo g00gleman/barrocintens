@@ -13,8 +13,14 @@
       <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Barrocintens</h1>
       <p class="mb-8 leading-relaxed">Wij verhuren koffie apparaten voor horeca bedrijven. We verkopen ook koffie bonen voor gebruik bij onze koffie apparaten</p>
       <div class="flex justify-center">
-        <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Contact</button>
-        <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Store</button>
+        <form
+          action="/contact">
+          <button  class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Contact</button>
+        </form>
+        <form
+          action="/product">
+          <button  class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Store</button>
+        </form>
       </div>
       <div class="py-12">
       <section class="text-gray-600 body-font">

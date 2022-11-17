@@ -10,7 +10,7 @@ class invoices extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function companies()
+    public function company()
     {
         return  $this->belongsTo(companies::class);
     }

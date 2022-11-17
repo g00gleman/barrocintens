@@ -214,9 +214,15 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|min:3',
         ]);
-        
+
+        if ($request->input('check')  == "on"){
+            $check = 1;
+        }
+        else {
+            $check = 0;
+        } 
         $productCategories->name = $request->input('name');
-        $productCategories->is_employee_only = 0;
+        $productCategories->is_employee_only = $check;
         $productCategories->save();
 
         $products = products::all();

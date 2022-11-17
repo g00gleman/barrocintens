@@ -161,7 +161,7 @@
   </table>
 @else
   @foreach ($products as $post)
-  @if($post->category_id == 3)
+  @if($post->is_employee_only != 1)
     @else
   <tr>
     </tr>
@@ -243,7 +243,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2>Overzicht category</h2>
+      <h2>Overzicht categorie</h2>
     </div>
     <div class="modal-body">
     <form
@@ -252,8 +252,16 @@
     @csrf
     <input
         name="name"
-        placeholder="Name..."
+        placeholder="Naam..."
         class="bg-transparent mb-8 block border-b-2 w-full h-10 text-3xl outline-none"></input>
+        <div class="grid grid-cols-12">
+      <label for="check" class="col-span-2">Medewerker alleen:</label>
+            <input
+                type="checkbox" 
+                name="check"
+                class="mb-8 bg-transparent block border-b-2 w-10 h-10 text-xl outline-none col-span-10"
+            ></input>
+        </div>
         <button
             type="submit"
             class="uppercase  bg-yellow-400 text-gray-100 text-lg font-extrabold py-2 px-3 rounded-2xl">

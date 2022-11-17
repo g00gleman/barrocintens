@@ -60,16 +60,17 @@ class DatabaseSeeder extends Seeder
             }
 
             $faker = Faker::create('nl_NL');
-            foreach (range(1, 100) as $value) {
+            foreach (range(1, 500) as $value) {
                 DB::table('invoices')->insert([
                     'leases_id' => $faker->numberBetween(1, 150),
                     'company_id' => $faker->numberBetween(1, 150),
                     'total_price' => "0",
+                    'created_at' => $faker->date(),
                 ]);
             }
 
             $faker = Faker::create('nl_NL');
-            foreach (range(1, 200) as $value) {
+            foreach (range(1, 1000) as $value) {
                 DB::table('invoice_products')->insert([
                     'invoice_id' => $faker->numberBetween(1, 100),
                     'product_id' => $faker->numberBetween(1, 7),

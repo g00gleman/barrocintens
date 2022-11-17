@@ -80,7 +80,7 @@
 
             foreach($invoice_products as $products){
 
-                $subtotaal = bcmul($products->amount, $products->product_price, 2);
+                $subtotaal = bcmul($products->amount, $products->products->price, 2);
 
                 $price+= $subtotaal;
                 $total_price = number_format($price, 2);
@@ -89,8 +89,8 @@
             <tr>
                 <td class="tg-0pky">{{ $products->amount }}x</td>
                 <td class="tg-0lax">{{ $products->product_id }}</td>
-                <td class="tg-0lax">{{ $products->product_name }}</td>
-                <td class="tg-0lax">&euro;{{ $products->product_price }}</td>
+                <td class="tg-0lax">{{ $products->products->name }}</td>
+                <td class="tg-0lax">&euro;{{ $products->products->price }}</td>
                 <td class="tg-0lax">&euro;{{ $subtotaal }}</td>
             </tr>
             <?php

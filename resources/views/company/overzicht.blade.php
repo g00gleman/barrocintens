@@ -118,6 +118,7 @@ function myFunction() {
     <th>Huisnummer</th>
     <th>Stad</th>
     <th>Landcode</th>
+    <th>Actief</th>
     <th>BkrCheckedAt</th>
     <th>Actie's</th>
   </tr>
@@ -136,6 +137,11 @@ function myFunction() {
     <td>{{$companies->HouseNumber}}</td>
     <td>{{$companies->city}}</td>
     <td>{{$companies->CountryCode}}</td>
+    @if($companies->check == 1)
+    <td>✔️</td>
+    @else
+    <td>❌</td>
+    @endif
     <td>{{$companies->BkrCheckedAt}}</td>
     <td><a href="/company/edit/{{ $companies->id }}" class="button">Wijzigen</a>
     @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)

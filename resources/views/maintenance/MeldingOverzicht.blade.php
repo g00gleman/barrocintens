@@ -122,8 +122,8 @@ function company() {
             <a href="{{ route('maintenance.create') }}" class="bg-yellow-400 uppercase ml-2 text-gray-100 text-xs font-roboto py-3 px-5 rounded-3xl ">werkbon aanmaken</a>
         </div>
 
-        <input type="text" id="myName" onkeyup="name()" placeholder="Search for name.." title="Type in a name">
-        <input type="text" id="mycompany" onkeyup="company()" placeholder="Search for company.." title="Type in a name">
+        <input type="text" id="myName" onkeyup="name()" placeholder="Zoek op naam.." title="Type in a name">
+        <input type="text" id="mycompany" onkeyup="company()" placeholder="Zoek voor bedrijf.." title="Type in a name">
     </div>
 
 

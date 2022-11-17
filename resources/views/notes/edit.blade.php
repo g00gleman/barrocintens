@@ -32,7 +32,7 @@
                         </tr>
                     </table>
                     <div class="text-center mb-2">
-                        <button type="submit" class="btn btn-default text-right bg-yellow-400 uppercase text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl">aanmaken</button>
+                        <button type="submit" class="btn btn-default text-right bg-yellow-400 uppercase text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl">bewerken</button>
                     </div>
                 </form>
 

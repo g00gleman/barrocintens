@@ -42,7 +42,7 @@
                         {{ __('Meldingen') }}
                     </x-nav-link>
                     @endif
-                    @if(session()->get('admin') == 1 || session()->get('inkoop') == 1|| session()->get('head_inkoop') == 1)
+                    @if(session()->get('admin') == 1 || session()->get('sales') == 1|| session()->get('head_sales') == 1)
                     <x-nav-link href="{{ route('offerte.overzicht') }}" :active="request()->routeIs('offerte.overzicht')">
                         {{ __('Offerte') }}
                     </x-nav-link>

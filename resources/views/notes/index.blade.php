@@ -81,23 +81,29 @@
             </a>
     </div>
     <div class="ml-40 mt-8 mr-40">
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name.." title="Type in a name">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Zoek voor bedrijf.." title="Type in a name">
     </div>
+    <table id="Notes">
+    <tr>
+        <th>nummer</th>
+        <th>bedrijf</th>
+        <th>notitie</th>
+        <th>maker</th>
+        <th>datum aangemaakt</th>
+        <th>actions</th>
+        </tr>
                 @foreach ($notes as $note)
-                    <table id="Notes">
-                        <tr>
-                            <th>nummer</th>
-                            <th>bedrijf</th>
-                            <th>notitie</th>
-                            <th>maker</th>
-                            <th>datum aangemaakt</th>
-                            <th>actions</th>
-                        </tr>
                         <tr>
                             <td class="id">{{$note->id}}</td>
                             <td class="bedrijf">{{$note->company->name}}</td>
                             <td class="note">{{$note->note}}</td>
-                            <td class="user">{{$note->users_id}}</td>
+                            <td class="user">
+                            @foreach($user as $users)
+                                @if($note->users_id == $users->id)
+                                    {{$users->name}}
+                                @endif
+                            @endforeach
+                            </td>
                             <td class="date">{{$note->date}}</td>
                             <td width="230px">
                                 <form action="{{ route('note.destroy',$note->id) }}" method="post">
@@ -110,7 +116,27 @@
                                 </form>
                             </td>
                         </tr>
-                    </table>
                 @endforeach
+                </table>
 
 </x-app-layout>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("Notes");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>

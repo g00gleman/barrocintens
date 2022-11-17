@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class invoiceProducts extends Model
 {
     use HasFactory;
-    
+
     protected $guarded = [];
 
     public function products()
     {
-        return  $this->belongsTo(products::class);
+        return  $this->belongsTo(products::class, 'product_id');
     }
     public function invoices()
     {

@@ -116,6 +116,7 @@ class voorraadController extends Controller
             else {
                 $check = 0;
             } 
+
             if($voorraad->check !=$check){
                 if($check == 0){
                     $totaalvoor = $products->amount - $voorraad->amount;
@@ -130,6 +131,15 @@ class voorraadController extends Controller
                     $products->amount = $totaalerna;
                     $products->save();
                 }
+            }else{
+                if($check == 1){
+                    $totaalvoor = $products->amount - $voorraad->amount;
+                    $products->amount = $totaalvoor;
+                    $totaalerna = $products->amount + $request->input('amount') ;
+                    $products->amount = $totaalerna;
+                    $products->save();
+                }
+
             }
 
             $voorraad->amount = $request->input('amount');

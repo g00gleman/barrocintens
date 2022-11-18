@@ -8,13 +8,22 @@ use App\Models\invoices;
 use App\Models\companies;
 use App\Models\products;
 use App\Models\factuur;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class factuurController extends Controller
 {
     public function getList()
     {
-        $invoices = invoices::with(['invoice_products'])->get();
+        if(session()->get('klant') == 1){
+            //dd(Session()->get('user_id'));
+            $user_id = session()->get('user_id');
+            $currend_user = User::all()->where('id', '=', $user_id)->first();
+            $invoices = invoices::with(['invoice_products'])->get()->where('company_id', '=', $currend_user->company_id);
+        }else{
+            $invoices = invoices::with(['invoice_products'])->get();
+        }
+        
         $invoice_products = invoiceProducts::all();
         $product = products::all();
 
@@ -24,7 +33,7 @@ class factuurController extends Controller
     public function getCreate()
     {
         $company = companies::all();
-        $products = products::all()->where('category_id', '!=', '3');
+        $products = products::all()->where('is_employee_only','!=','1');
         return view('factuur.create',compact('company'),compact('products'));
     }
 

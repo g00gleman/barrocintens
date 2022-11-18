@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('brand');
             $table->integer('amount');
             $table->integer('category_id');
+            $table->tinyInteger('is_employee_only');
             $table->timestamps();
          }); 
     }

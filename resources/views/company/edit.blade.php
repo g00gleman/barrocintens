@@ -45,10 +45,19 @@
             name="city"
             value="{{ $company->city }}"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
+        
         <input 
             name="CountryCode"
             value="{{ $company->CountryCode }}"
             class="mb-8 bg-transparent block border-b-2 w-full h-10 text-xl outline-none"></input>
+        <div class="grid grid-cols-12">
+            <label for="check" class="col-span-2">Actief:</label>
+            <input
+                type="checkbox" 
+                name="check"
+                class="mb-8 bg-transparent block border-b-2 w-10 h-10 text-xl outline-none col-span-10"
+                @if ($company->check == null)  @else checked @endif></input>
+        </div>
             <div class="grid grid-cols-12">
             <label for="bkr" class="col-span-2">BKR check:</label>
             <input

@@ -36,17 +36,25 @@ public function store(Request $request)
         else {
             $Bkr = null;
         } 
-
-    companies::create([
+        if ($request->input('check')  == "on"){
+            $check = 1;
+        }
+        else {
+            $check = 0;
+        } 
+    $company =companies::create([
         'name' => $request->input('name'),
         'phone' => $request->input('phone'),
         'street' => $request->input('street'),
         'city' => $request->input('city'),
         'HouseNumber' => $request->input('HouseNumber'),
         'CountryCode' => $request->input('CountryCode'),
+        'check' => $check,
         'BkrCheckedAt' => $Bkr,
 
     ]);
+    dd($company);
+
     return redirect('/company/overzicht');
         
 }
@@ -85,7 +93,12 @@ public function edit(Request $request)
         else {
             $Bkr = null;
         } 
-        
+        if ($request->input('check')  == "on"){
+            $check = 1;
+        }
+        else {
+            $check = 0;
+        } 
         $company = companies::all()->where('id', $id)->first();
 
         $company->name = $request->input('name');
@@ -94,6 +107,7 @@ public function edit(Request $request)
         $company->city = $request->input('city');
         $company->HouseNumber = $request->input('HouseNumber');
         $company->CountryCode = $request->input('CountryCode');
+        $company->check = $check;
         $company->BkrCheckedAt = $Bkr;
 
 

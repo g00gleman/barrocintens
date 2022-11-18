@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\companies;
 use App\Models\notes;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,8 +12,9 @@ class noteController extends Controller
 {
     public function index(Request $request)
     {
+        $user = User::all();
         $notes = notes::all();
-        return view('notes.index', compact('notes'));
+        return view('notes.index', compact('notes','user'));
     }
     
     public function create()

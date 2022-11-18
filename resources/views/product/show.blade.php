@@ -19,7 +19,7 @@
     </span>
     <br>
     <span class="text-gray-500">
-        Hoeveelheid in magazijn:<span class="font-bold roboto text-gray-800">{{ $post->amount }}
+        Hoeveelheid in magazijn:<span class="font-bold roboto text-gray-800">{{ $products->amount }}
     </span>
 
     <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">

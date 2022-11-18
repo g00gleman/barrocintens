@@ -25,8 +25,9 @@ class factuurController extends Controller
         }
         
         $invoice_products = invoiceProducts::all();
+        $product = products::all();
 
-        return view('factuur.list', compact('invoices', 'invoice_products'));
+        return view('factuur.list', compact('invoices', 'invoice_products','product'));
     }
 
     public function getCreate()
@@ -43,7 +44,7 @@ class factuurController extends Controller
             'company_id' => 'required',
             'product_id' => 'required'
         ]);
-    
+
         // foreach($invoiceProducts as $invoice_products){
 
         //     $total_price = '0';
@@ -55,22 +56,17 @@ class factuurController extends Controller
         // }
 
         $company_id = $request->input('company_id');
-        $company = companies::all()->where('id', $company_id)->first();   
-        
+        $company = companies::all()->where('id', $company_id)->first();
+
         $productID = $request->input('product_id');
 
         $invoice = invoices::create([
             'company_id' => $company_id,
-            'company_name' => $company->name,
-            'company_street' => $company->street,
-            'company_house_number' => $company->HouseNumber,
-            'company_city' => $company->city,
-            'company_country_code' => $company->CountryCode,
         ]);
 
-        
+
         foreach($productID as $product_id){
-            
+
 
             $products = products::all()->where('id', $product_id)->first();
             $amount = $request->input($product_id);
@@ -78,8 +74,6 @@ class factuurController extends Controller
             $productID[] = invoiceProducts::create([
                 'invoice_id' => $invoice->id,
                 'product_id' => $product_id,
-                'product_name' => $products->name,
-                'product_price' => $products->price,
                 'amount' => $amount,
 
             ]);
@@ -96,11 +90,11 @@ class factuurController extends Controller
         $invoice_products = invoiceProducts::all()->where('invoice_id', $id);
 
         $pdf = Pdf::loadView('factuur.pdf', compact('invoice', 'invoice_products',));
-        
+
         return $pdf->download('factuur.pdf');
 
         // $pathToFile = storage_path('app\factuur\factuur1.pdf');
-        
+
         // return response()->download($pathToFile);
     }
 

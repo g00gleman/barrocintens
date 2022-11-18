@@ -16,13 +16,10 @@ return new class extends Migration
        Schema::create('invoice_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('invoice_id')->constrained();
-            $table->foreignId('product_id')->constrained(); 
-            $table->string('product_name')->constrained(); 
-            $table->decimal('product_price')->constrained(); 
+            $table->foreignId('product_id')->constrained();
             $table->integer('amount')->constrained();
-            $table->dateTime('updated_at');
-            $table->dateTime('created_at');
-        }); 
+            $table->timestamps();
+        });
     }
 
     /**
